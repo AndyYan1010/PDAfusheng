@@ -12,7 +12,8 @@ package com.bt.andy.fusheng;
 public class NetConfig {
     //服务器总地址
     public static String ROOT = "https://www.lzyyy.com/baoxiaodanxtb/";
-
+    //测试地址
+    public static String TESTURL = "http://205.168.1.103:8081/";
     //登录
     public static String LOGINURL = ROOT + "detail.do";
 }
