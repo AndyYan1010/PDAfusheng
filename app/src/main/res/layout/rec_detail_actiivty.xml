@@ -26,10 +26,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="物料代码："
+                    android:text="运单码："
                     android:textColor="@color/vm_black_87"/>
 
                 <TextView
+                    android:id="@+id/tv_order_code"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
@@ -48,14 +49,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="物料名称："
+                    android:text="供应商："
                     android:textColor="@color/vm_black_87"/>
 
                 <TextView
+                    android:id="@+id/tv_company"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="TBW10紫色小鹿叮190*5 TG"
+                    android:text="大冶斯瑞尔换热器有限公司"
                     android:textColor="@color/vm_black_87"/>
             </LinearLayout>
 
@@ -70,76 +72,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="规格型号："
+                    android:text="联系人："
                     android:textColor="@color/vm_black_87"/>
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="TBW10紫色小鹿叮190*5 TG"
-                    android:textColor="@color/vm_black_87"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="3dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="托盘号："
-                    android:textColor="@color/vm_black_87"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="16072901"
-                    android:textColor="@color/vm_black_87"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="3dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="批号："
-                    android:textColor="@color/vm_black_87"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="19216072901"
-                    android:textColor="@color/vm_black_87"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="3dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="单位："
-                    android:textColor="@color/vm_black_87"/>
-
-                <TextView
+                    android:id="@+id/tv_contacter"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
@@ -151,6 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="3dp"
                 android:orientation="horizontal">
 
@@ -158,14 +96,61 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="应收数量："
+                    android:text="电话tel："
                     android:textColor="@color/vm_black_87"/>
+
+                <TextView
+                    android:id="@+id/tv_tel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="0714-8755606，13872058412"
+                    android:textColor="@color/vm_black_87"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="货运公司："
+                    android:textColor="@color/vm_black_87"/>
+
+                <TextView
+                    android:id="@+id/tv_hycompany"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="24035.0"
+                    android:text="测试"
+                    android:textColor="@color/vm_black_87"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="送货日期："
+                    android:textColor="@color/vm_black_87"/>
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="20180917"
                     android:textColor="@color/vm_black_87"/>
             </LinearLayout>
 
@@ -236,6 +221,7 @@
                     android:id="@+id/tv_submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:layout_marginLeft="20dp"
                     android:background="@color/greenblue_12"
                     android:paddingBottom="10dp"
@@ -259,7 +245,8 @@
                     android:paddingTop="10dp"
                     android:text="删除"
                     android:textColor="@color/white"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:visibility="gone"/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

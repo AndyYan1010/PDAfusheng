@@ -21,9 +21,6 @@ import com.bt.andy.fusheng.utils.SpUtils;
 import com.bt.andy.fusheng.utils.ToastUtils;
 import com.google.gson.Gson;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 
 import okhttp3.Request;
@@ -96,9 +93,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 //是否记住账号密码
                 isNeedRem(number, pass);
                 //登录
-                 loginToService(number, pass);
-//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                startActivity(intent);
+                loginToService(number, pass);
+                //                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                //                startActivity(intent);
                 break;
         }
     }
@@ -114,12 +111,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private void loginToService(String name, String psd) {
         ProgressDialogUtil.startShow(LoginActivity.this, "正在登录请稍后");
         //测试地址，需修改
-        String loginUrl = NetConfig.TESTURL+"login";
-//        String loginUrl = NetConfig.LOGINURL;
         RequestParamsFM params = new RequestParamsFM();
         params.put("username", name);
         params.put("pwd", psd);
-        HttpOkhUtils.getInstance().doGetWithParams(loginUrl, params, new HttpOkhUtils.HttpCallBack() {
+        HttpOkhUtils.getInstance().doGetWithParams(NetConfig.LOGIN, params, new HttpOkhUtils.HttpCallBack() {
             @Override
             public void onError(Request request, IOException e) {
                 ProgressDialogUtil.hideDialog();
@@ -134,18 +129,19 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     return;
                 }
                 Gson gson = new Gson();
-                System.out.println(resbody);
                 LoginInfo loginInfo = gson.fromJson(resbody, LoginInfo.class);
-                LoginInfo.LoginlistBean bean = loginInfo.getLoginlist().get(0);
+                ToastUtils.showToast(LoginActivity.this, loginInfo.getMessage());
                 int result = loginInfo.getResult();
-                    if (result == 1) {
-                        MyApplication.isLogin = 1;
-                        MyApplication.userName = bean.getFusername();
-                        MyApplication.userID = bean.getId();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                        ToastUtils.showToast(LoginActivity.this, loginInfo.getMessage());
+                if (result == 1) {
+                    LoginInfo.LoginlistBean bean = loginInfo.getLoginlist().get(0);
+                    MyApplication.isLogin = 1;
+                    MyApplication.userName = bean.getFusername();
+                    MyApplication.userID = bean.getId();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         });
     }

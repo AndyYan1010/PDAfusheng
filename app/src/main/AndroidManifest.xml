@@ -33,8 +33,8 @@
         </activity>
         <activity android:name="com.bt.andy.fusheng.activity.CheckReceiptActivity"/>
         <activity android:name="com.bt.andy.fusheng.activity.RecSheetDetailActivity"/>
-        <activity android:name="com.bt.andy.fusheng.activity.StoreProductActivity"/>
-        <activity android:name="com.bt.andy.fusheng.activity.StoreDetailActivity"/>
+        <activity android:name="com.bt.andy.fusheng.activity.CheckProListActivity"/>
+        <activity android:name="com.bt.andy.fusheng.activity.CheckDetailActivity"/>
         <activity android:name="com.bt.andy.fusheng.activity.SaomiaoUIActivity"/>
     </application>
 

@@ -4,10 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bt.andy.fusheng.R;
+import com.bt.andy.fusheng.messegeInfo.ReceivelistInfo;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ import java.util.List;
  */
 
 public class LvRecSheetAdapter extends BaseAdapter {
-    private Context mContext;
-    private List    mList;
+    private Context                               mContext;
+    private List<ReceivelistInfo.ReceivelistBean> mList;
 
-    public LvRecSheetAdapter(Context context, List list) {
+    public LvRecSheetAdapter(Context context, List<ReceivelistInfo.ReceivelistBean> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -50,15 +50,30 @@ public class LvRecSheetAdapter extends BaseAdapter {
         if (null == view) {
             view = View.inflate(mContext, R.layout.lv_store_item, null);
             viewHolder = new MyViewHolder();
+            viewHolder.tv_shname = view.findViewById(R.id.tv_shname);
+            viewHolder.tv_comname = view.findViewById(R.id.tv_comname);
+            viewHolder.tv_order = view.findViewById(R.id.tv_order);
+            viewHolder.tv_date = view.findViewById(R.id.tv_date);
+            viewHolder.tv_time = view.findViewById(R.id.tv_time);
             view.setTag(viewHolder);
         } else {
             viewHolder = (MyViewHolder) view.getTag();
+        }
+        viewHolder.tv_shname.setText(mList.get(i).getHuoyun());
+        viewHolder.tv_comname.setText(mList.get(i).getProviderfullname());
+        viewHolder.tv_order.setText(mList.get(i).getSonghuono());
+        if (null != mList.get(i).getChdate() && mList.get(i).getChdate().length() > 12) {
+            viewHolder.tv_date.setText(mList.get(i).getChdate().substring(0, 10));
+            viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
+        } else {
+            viewHolder.tv_date.setText(mList.get(i).getChdate());
+            viewHolder.tv_time.setText("时间获取失败");
+
         }
         return view;
     }
 
     private class MyViewHolder {
-        ImageView img_icon;
-        TextView  tv_title;
+        TextView tv_comname, tv_order, tv_time, tv_shname, tv_date;
     }
 }
