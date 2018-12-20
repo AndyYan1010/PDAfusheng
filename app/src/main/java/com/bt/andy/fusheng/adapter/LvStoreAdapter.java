@@ -48,29 +48,35 @@ public class LvStoreAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         MyViewHolder viewHolder;
         if (null == view) {
-            view = View.inflate(mContext, R.layout.lv_store_item, null);
+            view = View.inflate(mContext, R.layout.lv_check_item, null);
             viewHolder = new MyViewHolder();
-            viewHolder.tv_comname = view.findViewById(R.id.tv_comname);
             viewHolder.tv_order = view.findViewById(R.id.tv_order);
+            viewHolder.tv_comname = view.findViewById(R.id.tv_comname);
+            viewHolder.tv_address = view.findViewById(R.id.tv_address);
+            viewHolder.tv_transCompany = view.findViewById(R.id.tv_transCompany);
+            viewHolder.tv_phone = view.findViewById(R.id.tv_phone);
             viewHolder.tv_date = view.findViewById(R.id.tv_date);
             viewHolder.tv_time = view.findViewById(R.id.tv_time);
             view.setTag(viewHolder);
         } else {
             viewHolder = (MyViewHolder) view.getTag();
         }
+        viewHolder.tv_order.setText(mList.get(i).getSonghuono());
         viewHolder.tv_comname.setText(mList.get(i).getProviderfullname());
-        viewHolder.tv_order.setText(mList.get(i).getCheckno());
-        if (null != mList.get(i).getCheck_date() && mList.get(i).getCheck_date().length() > 12) {
-            viewHolder.tv_date.setText(mList.get(i).getCheck_date().substring(0, 10));
-            viewHolder.tv_time.setText(mList.get(i).getCheck_date().substring(11));
+        viewHolder.tv_address.setText(mList.get(i).getChaddress());
+        viewHolder.tv_transCompany.setText(mList.get(i).getHuoyun());
+        viewHolder.tv_phone.setText(mList.get(i).getHuoyuntel());
+        if (null != mList.get(i).getChdate() && mList.get(i).getChdate().length() > 12) {
+            viewHolder.tv_date.setText(mList.get(i).getChdate().substring(0, 10));
+            viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
         } else {
-            viewHolder.tv_date.setText(mList.get(i).getCheck_date());
+            viewHolder.tv_date.setText(mList.get(i).getChdate());
             viewHolder.tv_time.setText("时间获取失败");
         }
         return view;
     }
 
     private class MyViewHolder {
-        TextView tv_comname, tv_order, tv_date, tv_time;
+        TextView tv_order, tv_comname, tv_address, tv_transCompany, tv_phone,tv_date, tv_time;
     }
 }

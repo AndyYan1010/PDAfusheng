@@ -42,6 +42,8 @@ public class CheckReceiptActivity extends BaseActivity implements View.OnClickLi
     private ListView                              lv_rece_sheet;
     private List<ReceivelistInfo.ReceivelistBean> mData;
     private LvRecSheetAdapter                     sheetAdapter;
+    private int REQUEST_REC_DETAIL = 1001;
+    private int RESULT_REC_DETAIL  = 10001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class CheckReceiptActivity extends BaseActivity implements View.OnClickLi
                 //跳转收料单详情
                 Intent intent = new Intent(CheckReceiptActivity.this, RecSheetDetailActivity.class);
                 intent.putExtra("orderID", mData.get(i).getId());
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_REC_DETAIL);
             }
         });
         //获取查找校验单列表
@@ -90,6 +92,15 @@ public class CheckReceiptActivity extends BaseActivity implements View.OnClickLi
                 //获取查找校验单列表
                 getRecevieListInfo();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_REC_DETAIL == requestCode && RESULT_REC_DETAIL == resultCode) {
+            //获取查找校验单列表
+            getRecevieListInfo();
         }
     }
 
@@ -114,9 +125,9 @@ public class CheckReceiptActivity extends BaseActivity implements View.OnClickLi
                 ReceivelistInfo receivelistInfo = gson.fromJson(resbody, ReceivelistInfo.class);
                 ToastUtils.showToast(CheckReceiptActivity.this, receivelistInfo.getMessage());
                 if (1 == receivelistInfo.getResult()) {
-                    if (null==mData){
-                        mData=new ArrayList<>();
-                    }else {
+                    if (null == mData) {
+                        mData = new ArrayList<>();
+                    } else {
                         mData.clear();
                     }
                     mData.addAll(receivelistInfo.getReceivelist());

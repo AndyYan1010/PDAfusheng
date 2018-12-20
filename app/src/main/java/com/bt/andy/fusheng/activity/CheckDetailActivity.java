@@ -11,8 +11,6 @@ import com.bt.andy.fusheng.MyApplication;
 import com.bt.andy.fusheng.NetConfig;
 import com.bt.andy.fusheng.R;
 import com.bt.andy.fusheng.adapter.CheckProAdapter;
-import com.bt.andy.fusheng.adapter.MyCommonAdapter;
-import com.bt.andy.fusheng.adapterViewHolder.MyCommonViewHolder;
 import com.bt.andy.fusheng.messegeInfo.CheckDetailInfo;
 import com.bt.andy.fusheng.utils.HttpOkhUtils;
 import com.bt.andy.fusheng.utils.ProgressDialogUtil;
@@ -46,10 +44,15 @@ public class CheckDetailActivity extends BaseActivity implements View.OnClickLis
     private ListView                                                 lv_store;
     private String                                                   orderID;
     private List<CheckDetailInfo.ShelvesdetailBean.ShelvesentryBean> mData;
-    private CheckProAdapter                                          complStoreAdapter;
-
-    //    private Spinner   spn_store;
-    //    private Spinner   spn_position;
+    private CheckProAdapter                                          checkListAdapter;
+    private TextView                                                 tv_submit;
+    //    private EditText                                                 et_recunit;
+    //    private EditText                                                 et_address;
+    //    private EditText                                                 et_contact;
+    //    private EditText                                                 et_phone;
+    //    private Spinner                                                  sp_company;
+    //    private List<TransPortCompanyInfo>                               mSpCompanyData;
+    //    private String                                                   selectCompanyID;
 
 
     @Override
@@ -68,11 +71,13 @@ public class CheckDetailActivity extends BaseActivity implements View.OnClickLis
         tv_member = (TextView) findViewById(R.id.tv_member);
         tv_date = (TextView) findViewById(R.id.tv_date);
         tv_company = (TextView) findViewById(R.id.tv_company);
+        //        et_recunit = (EditText) findViewById(R.id.et_recunit);
+        //        et_address = (EditText) findViewById(R.id.et_address);
+        //        et_contact = (EditText) findViewById(R.id.et_contact);
+        //        et_phone = (EditText) findViewById(R.id.et_phone);
+        //        sp_company = (Spinner) findViewById(R.id.sp_company);
         lv_store = (ListView) findViewById(R.id.lv_store);
-
-
-        //        spn_store = (Spinner) findViewById(R.id.spn_store);
-        //        spn_position = (Spinner) findViewById(R.id.spn_position);
+        tv_submit = (TextView) findViewById(R.id.tv_submit);
     }
 
     private void setData() {
@@ -81,34 +86,37 @@ public class CheckDetailActivity extends BaseActivity implements View.OnClickLis
         tv_title.setText("任务单汇报详情");
         img_back.setOnClickListener(this);
         img_refresh.setOnClickListener(this);
+        tv_submit.setOnClickListener(this);
 
         orderID = getIntent().getStringExtra("orderID");
         mData = new ArrayList<>();
-        complStoreAdapter = new CheckProAdapter(this, mData);
-        lv_store.setAdapter(complStoreAdapter);
+        checkListAdapter = new CheckProAdapter(this, mData);
+        lv_store.setAdapter(checkListAdapter);
 
 
-        final List<String> mStoreData = new ArrayList();
-        mStoreData.add("请选择仓库");
-        final MyCommonViewHolder mViewHolder = new MyCommonViewHolder();
-        MyCommonAdapter postAdapter = new MyCommonAdapter(CheckDetailActivity.this, mStoreData, R.layout.sp_position_item, mViewHolder) {//CheckDetailActivity.this, mStoreData, R.layout.sp_position_item, mViewHolder
+        //        mSpCompanyData = new ArrayList();
+        //        TransPortCompanyInfo companyInfo = new TransPortCompanyInfo();
+        //        companyInfo.setCompany_name("请选择货运公司");
+        //        mSpCompanyData.add(companyInfo);
+        //        final MyCommonViewHolder mViewHolder = new MyCommonViewHolder();
+        //        MyCommonAdapter postAdapter = new MyCommonAdapter(CheckDetailActivity.this, mSpCompanyData, R.layout.sp_position_item, mViewHolder) {//CheckDetailActivity.this, mStoreData, R.layout.sp_position_item, mViewHolder
+        //
+        //            @Override
+        //            public void bindView(View view) {
+        //                mViewHolder.tv_title = view.findViewById(R.id.tv_title);
+        //            }
+        //
+        //            @Override
+        //            public void setData(int position) {
+        //                mViewHolder.tv_title.setText(mSpCompanyData.get(position).getCompany_name());
+        //                selectCompanyID = mSpCompanyData.get(position).getCompany_id();
+        //            }
+        //
+        //        };
+        //        sp_company.setAdapter(postAdapter);
 
-            @Override
-            public void bindView(View view) {
-                mViewHolder.tv_title = view.findViewById(R.id.tv_title);
-            }
-
-            @Override
-            public void setData(int position) {
-                mViewHolder.tv_title.setText(mStoreData.get(position));
-            }
-
-        };
-        //        spn_store.setAdapter(postAdapter);
-        //        spn_position.setAdapter(postAdapter);
-
-        //获取成品详情信息
-        getComplDetailInfo();
+        //获取检测品详情信息
+        getCheckDetailInfo();
     }
 
     @Override
@@ -117,10 +125,17 @@ public class CheckDetailActivity extends BaseActivity implements View.OnClickLis
             case R.id.img_back:
                 finish();
                 break;
+            case R.id.tv_submit:
+                submitInfo();
+                break;
         }
     }
 
-    private void getComplDetailInfo() {
+    private void submitInfo() {
+
+    }
+
+    private void getCheckDetailInfo() {
         ProgressDialogUtil.startShow(this, "正在查询...");
         RequestParamsFM params = new RequestParamsFM();
         params.put("shelvesid", orderID);
@@ -153,6 +168,7 @@ public class CheckDetailActivity extends BaseActivity implements View.OnClickLis
                         List<CheckDetailInfo.ShelvesdetailBean.ShelvesentryBean> shelvesentry = shelvesdetailBean.getShelvesentry();
                         if (null != shelvesentry && shelvesentry.size() > 0) {
                             mData.addAll(shelvesentry);
+                            checkListAdapter.notifyDataSetChanged();
                         }
                     }
                 }

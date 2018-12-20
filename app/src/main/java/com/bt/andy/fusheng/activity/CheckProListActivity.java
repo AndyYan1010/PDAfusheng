@@ -70,12 +70,12 @@ public class CheckProListActivity extends BaseActivity implements View.OnClickLi
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //跳转检验单详情
                 Intent intent = new Intent(CheckProListActivity.this, CheckDetailActivity.class);
-                intent.putExtra("orderID", mData.get(i).getId());
+                intent.putExtra("orderID", mData.get(i).getSonghuono());
                 startActivity(intent);
             }
         });
         //获取检验列表
-        getCompeleteListInfo();
+        getCheckListInfo();
     }
 
     @Override
@@ -86,12 +86,12 @@ public class CheckProListActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.img_refresh:
                 //获取检验列表
-                getCompeleteListInfo();
+                getCheckListInfo();
                 break;
         }
     }
 
-    private void getCompeleteListInfo() {
+    private void getCheckListInfo() {
         ProgressDialogUtil.startShow(this, "正在查询...");
         HttpOkhUtils.getInstance().doGet(NetConfig.SHELVESLIST, new HttpOkhUtils.HttpCallBack() {
             @Override

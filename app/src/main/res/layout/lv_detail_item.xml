@@ -14,7 +14,7 @@
             android:id="@+id/cb_choice"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <TextView
             android:id="@+id/tv_dcode"
@@ -60,7 +60,7 @@
             android:layout_marginTop="3dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:phoneNumber="true"
+            android:numeric="integer"
             android:text="实收数"
             android:textColor="@color/vm_black_100"
             android:textSize="16sp"/>

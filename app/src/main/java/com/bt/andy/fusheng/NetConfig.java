@@ -22,6 +22,8 @@ public class NetConfig {
     public static String RECEIVEDETAIL = ROOT + "receivedetail";
     //提交校验单
     public static String UPDATERECEIVE = ROOT + "updatereceive";
+
+
     //获取成品列表
     public static String SHELVESLIST   = ROOT + "shelveslist";
     //成品详情
