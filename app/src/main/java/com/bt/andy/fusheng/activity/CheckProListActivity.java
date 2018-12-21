@@ -1,6 +1,5 @@
 package com.bt.andy.fusheng.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,7 +11,7 @@ import com.bt.andy.fusheng.BaseActivity;
 import com.bt.andy.fusheng.NetConfig;
 import com.bt.andy.fusheng.R;
 import com.bt.andy.fusheng.adapter.LvStoreAdapter;
-import com.bt.andy.fusheng.messegeInfo.CheckListInfo;
+import com.bt.andy.fusheng.messegeInfo.PutListInfo;
 import com.bt.andy.fusheng.utils.HttpOkhUtils;
 import com.bt.andy.fusheng.utils.ProgressDialogUtil;
 import com.bt.andy.fusheng.utils.ToastUtils;
@@ -34,12 +33,12 @@ import okhttp3.Request;
  */
 
 public class CheckProListActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView                           img_back;
-    private ImageView                           img_refresh;
-    private TextView                            tv_title;
-    private ListView                            lv_store;
-    private List<CheckListInfo.ReceivelistBean> mData;
-    private LvStoreAdapter                      sheetAdapter;
+    private ImageView                         img_back;
+    private ImageView                         img_refresh;
+    private TextView                          tv_title;
+    private ListView                          lv_store;
+    private List<PutListInfo.ReceivelistBean> mData;
+    private LvStoreAdapter                    sheetAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +61,8 @@ public class CheckProListActivity extends BaseActivity implements View.OnClickLi
         tv_title.setText("产品检测列表");
         img_back.setOnClickListener(this);
         img_refresh.setOnClickListener(this);
+
+
         mData = new ArrayList();
         sheetAdapter = new LvStoreAdapter(this, mData);
         lv_store.setAdapter(sheetAdapter);
@@ -69,9 +70,7 @@ public class CheckProListActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //跳转检验单详情
-                Intent intent = new Intent(CheckProListActivity.this, CheckDetailActivity.class);
-                intent.putExtra("orderID", mData.get(i).getSonghuono());
-                startActivity(intent);
+
             }
         });
         //获取检验列表
@@ -108,7 +107,7 @@ public class CheckProListActivity extends BaseActivity implements View.OnClickLi
                     return;
                 }
                 Gson gson = new Gson();
-                CheckListInfo compeleteListInfo = gson.fromJson(resbody, CheckListInfo.class);
+                PutListInfo compeleteListInfo = gson.fromJson(resbody, PutListInfo.class);
                 ToastUtils.showToast(CheckProListActivity.this, compeleteListInfo.getMessage());
                 if (1 == compeleteListInfo.getResult()) {
                     if (null == mData) {
@@ -116,7 +115,8 @@ public class CheckProListActivity extends BaseActivity implements View.OnClickLi
                     } else {
                         mData.clear();
                     }
-                    mData.addAll(compeleteListInfo.getReceivelist());
+                    if (null != compeleteListInfo.getReceivelist())
+                        mData.addAll(compeleteListInfo.getReceivelist());
                     sheetAdapter.notifyDataSetChanged();
                 }
             }

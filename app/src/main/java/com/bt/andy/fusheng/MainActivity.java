@@ -23,9 +23,9 @@ public class MainActivity extends BaseActivity {
     private long exitTime = 0;//记录点击物理返回键的时间
     private GridView           mGridViewMenu;
     private MenuGridviewApater menuAdapter;
-    private int[]    resArr  = new int[]{R.drawable.shouliao, R.drawable.zhijian,  R.drawable.pinzhijianyan, R.drawable.shangjia, R.drawable.chaipi, R.drawable.kucun, R.drawable.pandian
-            , R.drawable.baozhuang, R.drawable.fahuo, R.drawable.kusun,0, 0};
-    private String[] textArr = new String[]{"收料校验","物料质检", "品质检验", "上架入库", "截料拆批", "库存查询", "盘点", "包装追溯", "成品发货", "库损处理",  "", ""};
+    private int[]    resArr  = new int[]{R.drawable.shouliao, R.drawable.zhijian, R.drawable.pinzhijianyan, R.drawable.shangjia, R.drawable.chaipi, R.drawable.kucun, R.drawable.pandian
+            , R.drawable.baozhuang, R.drawable.fahuo, R.drawable.kusun, 0, 0};
+    private String[] textArr = new String[]{"收料校验", "物料质检", "品质检验", "上架入库", "截料拆批", "库存查询", "盘点", "包装追溯", "成品发货", "库损处理", "", ""};
     private List<MainMenuEntity> dadaList;
 
     @Override
@@ -59,14 +59,17 @@ public class MainActivity extends BaseActivity {
                     Intent intent = new Intent(MainActivity.this, CheckReceiptActivity.class);
                     startActivity(intent);
                 } else if (i == 1) {
-                    //跳转品质检验界面
+                    ToastUtils.showToast(MainActivity.this, "暂未开通");
+                } else if (i == 2) {
+                    //跳转物料质检界面
                     Intent intent = new Intent(MainActivity.this, CheckProListActivity.class);
                     startActivity(intent);
-                } else if (i == 2) {
+                } else if (i == 3) {
                     //跳转上架入库界面
                     Intent intent = new Intent(MainActivity.this, PutProListActivity.class);
                     startActivity(intent);
                 } else {
+
                     ToastUtils.showToast(MainActivity.this, "暂未开通");
                 }
             }

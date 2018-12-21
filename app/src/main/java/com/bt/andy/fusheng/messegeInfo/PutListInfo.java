@@ -11,11 +11,11 @@ import java.util.List;
  * @更新描述 ${TODO}
  */
 
-public class CheckListInfo {
+public class PutListInfo {
 
     /**
      * result : 1
-     * receivelist : [{"huoyuntel":"","providerfullname":"大冶斯瑞尔换热器有限公司","chaddress":"湖北省大冶市经济开发区西北工业园","chdate":"2018-12-19","providerproxy":"汪敬华","huoyun":"","songhuono":"SH20181219002"}]
+     * receivelist : [{"huoyuntel":"","providerfullname":"星域控制工程(上海)有限公司","chaddress":"闵行区莲花南路2129弄118号8座","id":"40288a4267cf6a9b0167cf9153190022","chdate":"2018-12-17","providerproxy":"熊建","huoyun":"","songhuono":"SH20181221025"}]
      * message : 列表查找成功
      */
 
@@ -50,17 +50,19 @@ public class CheckListInfo {
     public static class ReceivelistBean {
         /**
          * huoyuntel :
-         * providerfullname : 大冶斯瑞尔换热器有限公司
-         * chaddress : 湖北省大冶市经济开发区西北工业园
-         * chdate : 2018-12-19
-         * providerproxy : 汪敬华
+         * providerfullname : 星域控制工程(上海)有限公司
+         * chaddress : 闵行区莲花南路2129弄118号8座
+         * id : 40288a4267cf6a9b0167cf9153190022
+         * chdate : 2018-12-17
+         * providerproxy : 熊建
          * huoyun :
-         * songhuono : SH20181219002
+         * songhuono : SH20181221025
          */
 
         private String huoyuntel;
         private String providerfullname;
         private String chaddress;
+        private String id;
         private String chdate;
         private String providerproxy;
         private String huoyun;
@@ -88,6 +90,14 @@ public class CheckListInfo {
 
         public void setChaddress(String chaddress) {
             this.chaddress = chaddress;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
         }
 
         public String getChdate() {

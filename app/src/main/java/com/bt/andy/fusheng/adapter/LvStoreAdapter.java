@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.bt.andy.fusheng.R;
-import com.bt.andy.fusheng.messegeInfo.CheckListInfo;
+import com.bt.andy.fusheng.messegeInfo.PutListInfo;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ import java.util.List;
  */
 
 public class LvStoreAdapter extends BaseAdapter {
-    private Context                             mContext;
-    private List<CheckListInfo.ReceivelistBean> mList;
+    private Context                           mContext;
+    private List<PutListInfo.ReceivelistBean> mList;
 
-    public LvStoreAdapter(Context context, List<CheckListInfo.ReceivelistBean> list) {
+    public LvStoreAdapter(Context context, List<PutListInfo.ReceivelistBean> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -71,12 +71,12 @@ public class LvStoreAdapter extends BaseAdapter {
             viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
         } else {
             viewHolder.tv_date.setText(mList.get(i).getChdate());
-            viewHolder.tv_time.setText("时间获取失败");
+            viewHolder.tv_time.setText("");
         }
         return view;
     }
 
     private class MyViewHolder {
-        TextView tv_order, tv_comname, tv_address, tv_transCompany, tv_phone,tv_date, tv_time;
+        TextView tv_order, tv_comname, tv_address, tv_transCompany, tv_phone, tv_date, tv_time;
     }
 }

@@ -27,7 +27,11 @@ public class NetConfig {
     //获取成品列表
     public static String SHELVESLIST   = ROOT + "shelveslist";
     //成品详情
-    public static String SHELVESDETAIL = ROOT + "shelvesdetail";
+    public static String SHELVESLISTDE = ROOT + "shelveslistde";
 
+    //查看仓库
+    public static String SELECTWAREHOUSE = ROOT + "selectwarehouse";
+    //查看仓位
+    public static String SELECTPOSITIONS = ROOT + "selectpositions";
 
 }

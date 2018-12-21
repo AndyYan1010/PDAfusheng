@@ -90,6 +90,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     ToastUtils.showToast(LoginActivity.this, "请输入密码");
                     return;
                 }
+
+
                 //是否记住账号密码
                 isNeedRem(number, pass);
                 //登录
