@@ -15,8 +15,8 @@ public class ReceiveDetailInfo {
 
     /**
      * result : 1
-     * receivelist : [{"shpeo":"","shdanwei":"","huoyuntel":"","huoyunpeo":"","chaddress":"闵行区莲花南路2129弄118号8座","jlh":0,"fpeople":"admin","chdate":"2018-11-13","providerproxy":"熊建","huoyun":"","songhuono":"SH20181218001","shaddress":"","ischeck":"0","providerfullname":"星域控制工程(上海)有限公司","cgorderno":"PO2018100008","receiveentrylist":[{"num":1,"sfilename":"S3113040 R0.pdf","fnote":"","sjnum":1,"isstatus":"1","units":" 个","songhuono":"SH20181218001","ischeck":"1","djjlh":"15326329","hxcnum":0,"isrk":"1","providerfullname":"星域控制工程(上海)有限公司","id":"40288a4267c055a30167c059f30c0005","rknumber":0,"respectarrivedate":"2018-12-11","automemo":"物管库:3 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:7 个,请购:1 个,物料库180天内月均出库数:1.3 个。超过90天库存数量:","isbianji":"1","cadlist":"S3113040 R0;","cadno":"S3113040","songhuoid":"40288a4267c055a30167c059f30c0004","version":"R0","cnum":1,"songhuonum":1,"cgorderno":"PO2018100008","cadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","goodnum":0},{"num":1,"sfilename":"S3113040 R0.pdf","fnote":"","sjnum":1,"isstatus":"1","units":" 个","songhuono":"SH20181218001","ischeck":"1","djjlh":"15326327","hxcnum":0,"isrk":"1","providerfullname":"星域控制工程(上海)有限公司","id":"40288a4267c055a30167c059f30d0006","rknumber":0,"respectarrivedate":"2018-11-27","automemo":"物管库:4 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:8 个,请购:1 个,物料库180天内月均出库数:2.0 个。超过90天库存数量:物管库(3),","isbianji":"1","cadlist":"S3113039 R0;","cadno":"S3113039","songhuoid":"40288a4267c055a30167c059f30c0004","version":"R0","cnum":1,"songhuonum":1,"cgorderno":"PO2018100008","cadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","goodnum":1}],"id":"40288a4267c055a30167c059f30c0004"}]
-     * message : 详情查找成功
+     * receivelist : [{"shpeo":"","shdanwei":"","huoyuntel":"","huoyunpeo":"","chaddress":"河北省邢台县宋家庄167号","jlh":0,"fpeople":"admin","chdate":"2018-12-24","providerproxy":"张爱社，左利彬","huoyun":"","songhuono":"SH20181224005","shaddress":"","ischeck":"0","providerfullname":"河北兴盛机械有限公司","cgorderno":"PO2018090341","songhuolist":[{"num":1,"sfilename":"MP0612 R2.pdf","fnote":"","sjnum":1,"isstatus":"0","units":" 个","songhuono":"SH20181224005","ischeck":"0","djjlh":"15321806","hxcnum":1,"isrk":"1","providerfullname":"河北兴盛机械有限公司","id":"40288a0967defead0167df15eb490003","rknumber":0,"respectarrivedate":"2018-12-24","automemo":"物管库:2个,进料库:0个,服务库:0个,半成品库:0个,转口贸易库:0个,服务旧品库:0个,旧品处理库:0个,在途:10 个,请购:1个,物料库180天内月均出库数:4.5个。超过90天库存数量:","isbianji":"0","cadlist":"KP1905 R1; KP1920 R5; P40B1 R1;","cadno":"KP1920","songhuoid":"40288a0967defead0167df15eb480001","version":"R5","cnum":0,"songhuonum":1,"cgorderno":"PO2018090341","cadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","goodnum":0}],"id":"40288a0967defead0167df15eb480001"}]
+     * message : 列表查找成功
      */
 
     private int result;
@@ -53,38 +53,38 @@ public class ReceiveDetailInfo {
          * shdanwei :
          * huoyuntel :
          * huoyunpeo :
-         * chaddress : 闵行区莲花南路2129弄118号8座
+         * chaddress : 河北省邢台县宋家庄167号
          * jlh : 0
          * fpeople : admin
-         * chdate : 2018-11-13
-         * providerproxy : 熊建
+         * chdate : 2018-12-24
+         * providerproxy : 张爱社，左利彬
          * huoyun :
-         * songhuono : SH20181218001
+         * songhuono : SH20181224005
          * shaddress :
          * ischeck : 0
-         * providerfullname : 星域控制工程(上海)有限公司
-         * cgorderno : PO2018100008
-         * receiveentrylist : [{"num":1,"sfilename":"S3113040 R0.pdf","fnote":"","sjnum":1,"isstatus":"1","units":" 个","songhuono":"SH20181218001","ischeck":"1","djjlh":"15326329","hxcnum":0,"isrk":"1","providerfullname":"星域控制工程(上海)有限公司","id":"40288a4267c055a30167c059f30c0005","rknumber":0,"respectarrivedate":"2018-12-11","automemo":"物管库:3 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:7 个,请购:1 个,物料库180天内月均出库数:1.3 个。超过90天库存数量:","isbianji":"1","cadlist":"S3113040 R0;","cadno":"S3113040","songhuoid":"40288a4267c055a30167c059f30c0004","version":"R0","cnum":1,"songhuonum":1,"cgorderno":"PO2018100008","cadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","goodnum":0},{"num":1,"sfilename":"S3113040 R0.pdf","fnote":"","sjnum":1,"isstatus":"1","units":" 个","songhuono":"SH20181218001","ischeck":"1","djjlh":"15326327","hxcnum":0,"isrk":"1","providerfullname":"星域控制工程(上海)有限公司","id":"40288a4267c055a30167c059f30d0006","rknumber":0,"respectarrivedate":"2018-11-27","automemo":"物管库:4 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:8 个,请购:1 个,物料库180天内月均出库数:2.0 个。超过90天库存数量:物管库(3),","isbianji":"1","cadlist":"S3113039 R0;","cadno":"S3113039","songhuoid":"40288a4267c055a30167c059f30c0004","version":"R0","cnum":1,"songhuonum":1,"cgorderno":"PO2018100008","cadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","goodnum":1}]
-         * id : 40288a4267c055a30167c059f30c0004
+         * providerfullname : 河北兴盛机械有限公司
+         * cgorderno : PO2018090341
+         * songhuolist : [{"num":1,"sfilename":"MP0612 R2.pdf","fnote":"","sjnum":1,"isstatus":"0","units":" 个","songhuono":"SH20181224005","ischeck":"0","djjlh":"15321806","hxcnum":1,"isrk":"1","providerfullname":"河北兴盛机械有限公司","id":"40288a0967defead0167df15eb490003","rknumber":0,"respectarrivedate":"2018-12-24","automemo":"物管库:2个,进料库:0个,服务库:0个,半成品库:0个,转口贸易库:0个,服务旧品库:0个,旧品处理库:0个,在途:10 个,请购:1个,物料库180天内月均出库数:4.5个。超过90天库存数量:","isbianji":"0","cadlist":"KP1905 R1; KP1920 R5; P40B1 R1;","cadno":"KP1920","songhuoid":"40288a0967defead0167df15eb480001","version":"R5","cnum":0,"songhuonum":1,"cgorderno":"PO2018090341","cadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","goodnum":0}]
+         * id : 40288a0967defead0167df15eb480001
          */
 
         private String shpeo;
-        private String                     shdanwei;
-        private String                     huoyuntel;
-        private String                     huoyunpeo;
-        private String                     chaddress;
-        private int                        jlh;
-        private String                     fpeople;
-        private String                     chdate;
-        private String                     providerproxy;
-        private String                     huoyun;
-        private String                     songhuono;
-        private String                     shaddress;
-        private String                     ischeck;
-        private String                     providerfullname;
-        private String                     cgorderno;
-        private String                     id;
-        private List<ReceiveentrylistBean> receiveentrylist;
+        private String                shdanwei;
+        private String                huoyuntel;
+        private String                huoyunpeo;
+        private String                chaddress;
+        private int                   jlh;
+        private String                fpeople;
+        private String                chdate;
+        private String                providerproxy;
+        private String                huoyun;
+        private String                songhuono;
+        private String                shaddress;
+        private String                ischeck;
+        private String                providerfullname;
+        private String                cgorderno;
+        private String                id;
+        private List<SonghuolistBean> songhuolist;
 
         public String getShpeo() {
             return shpeo;
@@ -214,40 +214,40 @@ public class ReceiveDetailInfo {
             this.id = id;
         }
 
-        public List<ReceiveentrylistBean> getReceiveentrylist() {
-            return receiveentrylist;
+        public List<SonghuolistBean> getSonghuolist() {
+            return songhuolist;
         }
 
-        public void setReceiveentrylist(List<ReceiveentrylistBean> receiveentrylist) {
-            this.receiveentrylist = receiveentrylist;
+        public void setSonghuolist(List<SonghuolistBean> songhuolist) {
+            this.songhuolist = songhuolist;
         }
 
-        public static class ReceiveentrylistBean {
+        public static class SonghuolistBean {
             /**
              * num : 1
-             * sfilename : S3113040 R0.pdf
+             * sfilename : MP0612 R2.pdf
              * fnote :
              * sjnum : 1
-             * isstatus : 1
+             * isstatus : 0
              * units :  个
-             * songhuono : SH20181218001
-             * ischeck : 1
-             * djjlh : 15326329
-             * hxcnum : 0
+             * songhuono : SH20181224005
+             * ischeck : 0
+             * djjlh : 15321806
+             * hxcnum : 1
              * isrk : 1
-             * providerfullname : 星域控制工程(上海)有限公司
-             * id : 40288a4267c055a30167c059f30c0005
+             * providerfullname : 河北兴盛机械有限公司
+             * id : 40288a0967defead0167df15eb490003
              * rknumber : 0
-             * respectarrivedate : 2018-12-11
-             * automemo : 物管库:3 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:7 个,请购:1 个,物料库180天内月均出库数:1.3 个。超过90天库存数量:
-             * isbianji : 1
-             * cadlist : S3113040 R0;
-             * cadno : S3113040
-             * songhuoid : 40288a4267c055a30167c059f30c0004
-             * version : R0
-             * cnum : 1
+             * respectarrivedate : 2018-12-24
+             * automemo : 物管库:2个,进料库:0个,服务库:0个,半成品库:0个,转口贸易库:0个,服务旧品库:0个,旧品处理库:0个,在途:10 个,请购:1个,物料库180天内月均出库数:4.5个。超过90天库存数量:
+             * isbianji : 0
+             * cadlist : KP1905 R1; KP1920 R5; P40B1 R1;
+             * cadno : KP1920
+             * songhuoid : 40288a0967defead0167df15eb480001
+             * version : R5
+             * cnum : 0
              * songhuonum : 1
-             * cgorderno : PO2018100008
+             * cgorderno : PO2018090341
              * cadLibjlh : https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf
              * goodnum : 0
              */
@@ -278,6 +278,11 @@ public class ReceiveDetailInfo {
             private String cgorderno;
             private String cadLibjlh;
             private int    goodnum;
+            /**
+             * isMSelect : false
+             */
+
+            private boolean isMSelect;
 
             public int getNum() {
                 return num;
@@ -485,6 +490,14 @@ public class ReceiveDetailInfo {
 
             public void setGoodnum(int goodnum) {
                 this.goodnum = goodnum;
+            }
+
+            public boolean isIsMSelect() {
+                return isMSelect;
+            }
+
+            public void setIsMSelect(boolean isMSelect) {
+                this.isMSelect = isMSelect;
             }
         }
     }

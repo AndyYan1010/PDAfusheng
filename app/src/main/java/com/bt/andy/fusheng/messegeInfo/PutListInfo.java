@@ -15,7 +15,7 @@ public class PutListInfo {
 
     /**
      * result : 1
-     * receivelist : [{"huoyuntel":"","providerfullname":"星域控制工程(上海)有限公司","chaddress":"闵行区莲花南路2129弄118号8座","id":"40288a4267cf6a9b0167cf9153190022","chdate":"2018-12-17","providerproxy":"熊建","huoyun":"","songhuono":"SH20181221025"}]
+     * receivelist : [{"huoyuntel":"","providerfullname":"河北兴盛机械有限公司","chaddress":"河北省邢台县宋家庄167号","id":"40288a0967defead0167df15eb480001","chdate":"2018-12-24","providerproxy":"张爱社，左利彬","huoyun":"","songhuono":"SH20181224005"}]
      * message : 列表查找成功
      */
 
@@ -50,13 +50,13 @@ public class PutListInfo {
     public static class ReceivelistBean {
         /**
          * huoyuntel :
-         * providerfullname : 星域控制工程(上海)有限公司
-         * chaddress : 闵行区莲花南路2129弄118号8座
-         * id : 40288a4267cf6a9b0167cf9153190022
-         * chdate : 2018-12-17
-         * providerproxy : 熊建
+         * providerfullname : 河北兴盛机械有限公司
+         * chaddress : 河北省邢台县宋家庄167号
+         * id : 40288a0967defead0167df15eb480001
+         * chdate : 2018-12-24
+         * providerproxy : 张爱社，左利彬
          * huoyun :
-         * songhuono : SH20181221025
+         * songhuono : SH20181224005
          */
 
         private String huoyuntel;

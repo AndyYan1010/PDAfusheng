@@ -16,10 +16,12 @@ public class NetConfig {
     public static String TESTURL       = "http://192.168.10.137:8081/";
     //登录
     public static String LOGIN         = ROOT + "login";
+
+
     //查找校验单列表
     public static String RECEIVELIST   = ROOT + "receivelist";
     //查找校验单详情
-    public static String RECEIVEDETAIL = ROOT + "receivedetail";
+    public static String RECEIVELISTDE = ROOT + "receivelistde";
     //提交校验单
     public static String UPDATERECEIVE = ROOT + "updatereceive";
 
@@ -28,6 +30,8 @@ public class NetConfig {
     public static String SHELVESLIST   = ROOT + "shelveslist";
     //成品详情
     public static String SHELVESLISTDE = ROOT + "shelveslistde";
+    //更新详情
+    public static String UPDATESHELVES = ROOT + "updateshelves";
 
     //查看仓库
     public static String SELECTWAREHOUSE = ROOT + "selectwarehouse";

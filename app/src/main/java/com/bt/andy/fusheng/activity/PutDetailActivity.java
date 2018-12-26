@@ -6,11 +6,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.bt.andy.fusheng.BaseActivity;
 import com.bt.andy.fusheng.MyApplication;
 import com.bt.andy.fusheng.NetConfig;
 import com.bt.andy.fusheng.R;
 import com.bt.andy.fusheng.adapter.PutProDetailAdapter;
+import com.bt.andy.fusheng.messegeInfo.LoginInfo;
 import com.bt.andy.fusheng.messegeInfo.PositionDetailInfo;
 import com.bt.andy.fusheng.messegeInfo.PutDetailInfo;
 import com.bt.andy.fusheng.messegeInfo.StoreDetailInfo;
@@ -45,12 +48,13 @@ public class PutDetailActivity extends BaseActivity implements View.OnClickListe
     private TextView                                            tv_company;
     private ListView                                            lv_store;
     private String                                              orderID;
+    private String                                              orderNO;
     private List<PutDetailInfo.ReceivelistBean.SonghuolistBean> mData;
     private List<StoreDetailInfo.WarehouselistBean>             mStoreData;
     private List<PositionDetailInfo.PositionslistBean>          mPositionData;
     private PutProDetailAdapter                                 putListAdapter;
     private TextView                                            tv_submit;
-
+    private int RESULTCODE_ISREFRESH = 1003;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +112,67 @@ public class PutDetailActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    private void submitInfo() {
+    private boolean isChoice;
+    private boolean isChoiceStoreOrPosition;
 
+    private void submitInfo() {
+        isChoiceStoreOrPosition = true;
+        JSONArray jsonArray = new JSONArray();
+        for (PutDetailInfo.ReceivelistBean.SonghuolistBean bean : mData) {
+            if (bean.isIsMSelect()) {
+                isChoice = true;
+                JSONObject object = new JSONObject();
+                object.put("receive_id", bean.getId());
+                object.put("djjlh", bean.getDjjlh());
+                object.put("rknum", "" + bean.getSjnum());
+                object.put("housecode", bean.getSelectStoreID());
+                object.put("entrepot", bean.getSelectStoreName());
+                object.put("fcode", bean.getSelectPositionID());
+                object.put("place", bean.getSelectPositionName());
+                if (null == bean.getSelectStoreID() || null == bean.getSelectPositionID()) {
+                    isChoiceStoreOrPosition = false;
+                }
+                jsonArray.add(object);
+            }
+        }
+        if (!isChoice) {
+            ToastUtils.showToast(this, "请选择要提交的子表");
+            return;
+        }
+        if (!isChoiceStoreOrPosition) {
+            ToastUtils.showToast(this, "有子表未选择仓库或仓位");
+            return;
+        }
+        RequestParamsFM params = new RequestParamsFM();
+        params.put("fstatus", "1");
+        params.put("userid", MyApplication.userID);
+        params.put("id", orderID);
+        params.put("cgorderno", orderNO);
+        params.put("list", jsonArray);
+        params.setUseJsonStreamer(true);
+        HttpOkhUtils.getInstance().doPost(NetConfig.UPDATESHELVES, params, new HttpOkhUtils.HttpCallBack() {
+            @Override
+            public void onError(Request request, IOException e) {
+                ProgressDialogUtil.hideDialog();
+                ToastUtils.showToast(PutDetailActivity.this, "网络连接错误");
+            }
+
+            @Override
+            public void onSuccess(int code, String resbody) {
+                ProgressDialogUtil.hideDialog();
+                if (code != 200) {
+                    ToastUtils.showToast(PutDetailActivity.this, "网络错误" + code);
+                    return;
+                }
+                Gson gson = new Gson();
+                LoginInfo loginInfo = gson.fromJson(resbody, LoginInfo.class);
+                ToastUtils.showToast(PutDetailActivity.this, loginInfo.getMessage());
+                if (1 == loginInfo.getResult()) {
+                    setResult(RESULTCODE_ISREFRESH);
+                    finish();
+                }
+            }
+        });
     }
 
     private void getStoreInfo() {
@@ -187,6 +250,7 @@ public class PutDetailActivity extends BaseActivity implements View.OnClickListe
                 if (1 == complDetailInfo.getResult()) {
                     List<PutDetailInfo.ReceivelistBean> receivedetail = complDetailInfo.getReceivelist();
                     if (receivedetail.size() > 0) {
+                        orderNO = receivedetail.get(0).getCgorderno();
                         tv_order.setText(receivedetail.get(0).getSonghuono());
                         tv_company.setText(receivedetail.get(0).getProviderfullname());
                         tv_member.setText(MyApplication.userName);

@@ -9,14 +9,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bt.andy.fusheng.BaseActivity;
-import com.bt.andy.fusheng.MyApplication;
 import com.bt.andy.fusheng.NetConfig;
 import com.bt.andy.fusheng.R;
 import com.bt.andy.fusheng.adapter.LvRecSheetAdapter;
 import com.bt.andy.fusheng.messegeInfo.ReceivelistInfo;
 import com.bt.andy.fusheng.utils.HttpOkhUtils;
 import com.bt.andy.fusheng.utils.ProgressDialogUtil;
-import com.bt.andy.fusheng.utils.RequestParamsFM;
 import com.bt.andy.fusheng.utils.ToastUtils;
 import com.google.gson.Gson;
 
@@ -35,7 +33,7 @@ import okhttp3.Request;
  * @更新描述 ${TODO}
  */
 
-public class CheckReceiptActivity extends BaseActivity implements View.OnClickListener {
+public class ReceiveListActivity extends BaseActivity implements View.OnClickListener {
     private ImageView                             img_back;
     private ImageView                             img_refresh;
     private TextView                              tv_title;
@@ -73,7 +71,7 @@ public class CheckReceiptActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //跳转收料单详情
-                Intent intent = new Intent(CheckReceiptActivity.this, RecSheetDetailActivity.class);
+                Intent intent = new Intent(ReceiveListActivity.this, RecSheetDetailActivity.class);
                 intent.putExtra("orderID", mData.get(i).getId());
                 startActivityForResult(intent, REQUEST_REC_DETAIL);
             }
@@ -105,25 +103,23 @@ public class CheckReceiptActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void getRecevieListInfo() {
-        RequestParamsFM params = new RequestParamsFM();
-        params.put("userid", MyApplication.userID);
-        HttpOkhUtils.getInstance().doGetWithParams(NetConfig.RECEIVELIST, params, new HttpOkhUtils.HttpCallBack() {
+        HttpOkhUtils.getInstance().doGet(NetConfig.RECEIVELIST, new HttpOkhUtils.HttpCallBack() {
             @Override
             public void onError(Request request, IOException e) {
                 ProgressDialogUtil.hideDialog();
-                ToastUtils.showToast(CheckReceiptActivity.this, "网络连接错误");
+                ToastUtils.showToast(ReceiveListActivity.this, "网络连接错误");
             }
 
             @Override
             public void onSuccess(int code, String resbody) {
                 ProgressDialogUtil.hideDialog();
                 if (code != 200) {
-                    ToastUtils.showToast(CheckReceiptActivity.this, "网络错误" + code);
+                    ToastUtils.showToast(ReceiveListActivity.this, "网络错误" + code);
                     return;
                 }
                 Gson gson = new Gson();
                 ReceivelistInfo receivelistInfo = gson.fromJson(resbody, ReceivelistInfo.class);
-                ToastUtils.showToast(CheckReceiptActivity.this, receivelistInfo.getMessage());
+                ToastUtils.showToast(ReceiveListActivity.this, receivelistInfo.getMessage());
                 if (1 == receivelistInfo.getResult()) {
                     if (null == mData) {
                         mData = new ArrayList<>();

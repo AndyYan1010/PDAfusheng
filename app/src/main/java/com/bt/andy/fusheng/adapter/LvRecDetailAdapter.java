@@ -6,6 +6,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,11 +27,11 @@ import java.util.List;
  */
 
 public class LvRecDetailAdapter extends BaseAdapter {
-    private Context                                                      mContext;
-    private List<ReceiveDetailInfo.ReceivelistBean.ReceiveentrylistBean> mList;
-    private RecSheetDetailActivity                                       mActivity;
+    private Context                                                 mContext;
+    private List<ReceiveDetailInfo.ReceivelistBean.SonghuolistBean> mList;
+    private RecSheetDetailActivity                                  mActivity;
 
-    public LvRecDetailAdapter(Context context, List<ReceiveDetailInfo.ReceivelistBean.ReceiveentrylistBean> list) {
+    public LvRecDetailAdapter(Context context, List<ReceiveDetailInfo.ReceivelistBean.SonghuolistBean> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -55,7 +57,7 @@ public class LvRecDetailAdapter extends BaseAdapter {
         if (null == view) {
             view = View.inflate(mContext, R.layout.lv_detail_item, null);
             viewHolder = new MyViewHolder();
-            //            viewHolder.cb_choice = view.findViewById(R.id.cb_choice);
+            viewHolder.cb_choice = view.findViewById(R.id.cb_choice);
             viewHolder.tv_dcode = view.findViewById(R.id.tv_dcode);
             viewHolder.tv_unit = view.findViewById(R.id.tv_unit);
             viewHolder.tv_shrec = view.findViewById(R.id.tv_shrec);
@@ -94,16 +96,21 @@ public class LvRecDetailAdapter extends BaseAdapter {
             }
         };
         viewHolder.et_real.removeTextChangedListener(textWatcher);
-
+        viewHolder.cb_choice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mList.get(i).setIsMSelect(b);
+            }
+        });
         if (i == 0) {
-            //            viewHolder.cb_choice.setVisibility(View.INVISIBLE);
+            viewHolder.cb_choice.setVisibility(View.INVISIBLE);
             viewHolder.tv_dcode.setText("物料代码");
             viewHolder.tv_unit.setText("单位");
             viewHolder.tv_shrec.setText("应收数");
             viewHolder.et_real.setText("实收数");
             viewHolder.et_real.setBackground(null);
         } else {
-            //viewHolder.cb_choice.setVisibility(View.VISIBLE);
+            viewHolder.cb_choice.setVisibility(View.VISIBLE);
             viewHolder.tv_dcode.setText(mList.get(i).getCadno());
             viewHolder.tv_unit.setText(mList.get(i).getUnits());
             viewHolder.tv_shrec.setText("" + mList.get(i).getSonghuonum());
@@ -111,11 +118,12 @@ public class LvRecDetailAdapter extends BaseAdapter {
             viewHolder.et_real.setText("" + mList.get(i).getSjnum());
             viewHolder.et_real.addTextChangedListener(textWatcher);
         }
+
         return view;
     }
 
     private class MyViewHolder {
-        //        CheckBox cb_choice;
+        CheckBox cb_choice;
         TextView tv_dcode, tv_unit, tv_shrec;
         EditText et_real;
     }

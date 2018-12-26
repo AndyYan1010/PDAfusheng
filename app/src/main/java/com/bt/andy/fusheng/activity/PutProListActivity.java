@@ -35,12 +35,14 @@ import okhttp3.Request;
 
 public class PutProListActivity extends BaseActivity implements View.OnClickListener {
     private ImageView                         img_back;
+    private ImageView                         img_empty;
     private ImageView                         img_refresh;
     private TextView                          tv_title;
     private ListView                          lv_store;
     private List<PutListInfo.ReceivelistBean> mData;
     private LvStoreAdapter                    sheetAdapter;
-
+    private int REQUEST_ISREFRESH    = 1002;
+    private int RESULTCODE_ISREFRESH = 1003;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class PutProListActivity extends BaseActivity implements View.OnClickList
         img_back = (ImageView) findViewById(R.id.img_back);
         img_refresh = (ImageView) findViewById(R.id.img_refresh);
         tv_title = (TextView) findViewById(R.id.tv_title);
+        img_empty = (ImageView) findViewById(R.id.img_empty);
         lv_store = (ListView) findViewById(R.id.lv_store);
     }
 
@@ -73,7 +76,7 @@ public class PutProListActivity extends BaseActivity implements View.OnClickList
                 //跳转检验单详情
                 Intent intent = new Intent(PutProListActivity.this, PutDetailActivity.class);
                 intent.putExtra("orderID", mData.get(i).getId());
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_ISREFRESH);
             }
         });
 
@@ -92,6 +95,15 @@ public class PutProListActivity extends BaseActivity implements View.OnClickList
                 //获取产品列表
                 getProjectListInfo();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_ISREFRESH == requestCode && RESULTCODE_ISREFRESH == resultCode){
+            //获取产品列表
+            getProjectListInfo();
         }
     }
 
@@ -119,6 +131,12 @@ public class PutProListActivity extends BaseActivity implements View.OnClickList
                         mData = new ArrayList();
                     } else {
                         mData.clear();
+                    }
+
+                    if (null != compeleteListInfo.getReceivelist() && compeleteListInfo.getReceivelist().size() > 0) {
+                        img_empty.setVisibility(View.GONE);
+                    } else {
+                        img_empty.setVisibility(View.VISIBLE);
                     }
                     if (null != compeleteListInfo.getReceivelist())
                         mData.addAll(compeleteListInfo.getReceivelist());

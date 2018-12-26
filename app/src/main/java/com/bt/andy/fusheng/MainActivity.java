@@ -10,7 +10,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.bt.andy.fusheng.activity.CheckProListActivity;
-import com.bt.andy.fusheng.activity.CheckReceiptActivity;
+import com.bt.andy.fusheng.activity.ReceiveListActivity;
 import com.bt.andy.fusheng.activity.PutProListActivity;
 import com.bt.andy.fusheng.adapter.MenuGridviewApater;
 import com.bt.andy.fusheng.messegeInfo.MainMenuEntity;
@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
                     //跳转收料校验界面
-                    Intent intent = new Intent(MainActivity.this, CheckReceiptActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ReceiveListActivity.class);
                     startActivity(intent);
                 } else if (i == 1) {
                     ToastUtils.showToast(MainActivity.this, "暂未开通");

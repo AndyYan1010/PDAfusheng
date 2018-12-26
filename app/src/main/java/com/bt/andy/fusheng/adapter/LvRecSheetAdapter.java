@@ -59,17 +59,16 @@ public class LvRecSheetAdapter extends BaseAdapter {
         } else {
             viewHolder = (MyViewHolder) view.getTag();
         }
-//        viewHolder.tv_shname.setText(mList.get(i).getHuoyun());
-//        viewHolder.tv_comname.setText(mList.get(i).getProviderfullname());
-//        viewHolder.tv_order.setText(mList.get(i).getOrderno());
-//        if (null != mList.get(i).getChdate() && mList.get(i).getChdate().length() > 12) {
-//            viewHolder.tv_date.setText(mList.get(i).getChdate().substring(0, 10));
-//            viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
-//        } else {
-//            viewHolder.tv_date.setText(mList.get(i).getChdate());
-//            viewHolder.tv_time.setText("时间获取失败");
-//
-//        }
+        viewHolder.tv_shname.setText(mList.get(i).getHuoyun());
+        viewHolder.tv_comname.setText(mList.get(i).getProviderfullname());
+        viewHolder.tv_order.setText(mList.get(i).getSonghuono());
+        if (null != mList.get(i).getChdate() && mList.get(i).getChdate().length() > 12) {
+            viewHolder.tv_date.setText(mList.get(i).getChdate().substring(0, 10));
+            viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
+        } else {
+            viewHolder.tv_date.setText(mList.get(i).getChdate());
+            viewHolder.tv_time.setText("");
+        }
         return view;
     }
 

@@ -2,6 +2,7 @@ package com.bt.andy.fusheng;
 
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
@@ -27,6 +28,8 @@ public class BaseActivity extends AppCompatActivity {
             protectApp();
         }
         MyApplication.listActivity.add(this);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//保持竖屏
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);//取消键盘自动弹出
     }
     protected void protectApp() {
         Intent intent = new Intent(this, LoginActivity.class);

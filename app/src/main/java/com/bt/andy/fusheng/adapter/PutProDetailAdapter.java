@@ -1,5 +1,6 @@
 package com.bt.andy.fusheng.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -15,6 +18,8 @@ import com.bt.andy.fusheng.R;
 import com.bt.andy.fusheng.messegeInfo.PositionDetailInfo;
 import com.bt.andy.fusheng.messegeInfo.PutDetailInfo;
 import com.bt.andy.fusheng.messegeInfo.StoreDetailInfo;
+import com.bt.andy.fusheng.utils.MyAlertDialogHelper;
+import com.bt.andy.fusheng.utils.MyCloseKeyBoardUtil;
 import com.bt.andy.fusheng.utils.PopupOpenHelper;
 
 import java.util.List;
@@ -93,7 +98,14 @@ public class PutProDetailAdapter extends BaseAdapter {
         viewHolder.tv_sjsum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //打开输入按钮
+                openInputDailog(viewHolder.tv_sjsum, i);
+            }
+        });
+        viewHolder.cb_choice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mList.get(i).setIsMSelect(b);
             }
         });
         return view;
@@ -103,6 +115,43 @@ public class PutProDetailAdapter extends BaseAdapter {
         CheckBox cb_choice;
         TextView tv_store, tv_position, tv_sjsum;
         TextView tv_order, tv_unit, tv_sum;
+    }
+
+    private MyAlertDialogHelper dialogHelper;
+    private int                 mSjnum;
+
+    private void openInputDailog(final TextView tv_sjsum, final int position) {
+        dialogHelper = new MyAlertDialogHelper();
+        View view = View.inflate(mContext, R.layout.dialog_input_pass, null);
+        dialogHelper.setDIYView(mContext, view);
+        dialogHelper.show();
+        TextView tv_title = view.findViewById(R.id.tv_title);
+        final EditText et_input = view.findViewById(R.id.et_input);
+        TextView tv_cancle = view.findViewById(R.id.tv_cancle);
+        TextView tv_sure = view.findViewById(R.id.tv_sure);
+        tv_title.setText("实入库数");
+        tv_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogHelper.disMiss();
+            }
+        });
+        tv_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //先比对下账户密码
+                String pass = String.valueOf(et_input.getText()).trim();
+                if ("".equals(pass) || "请输入数值".equals(pass)) {
+                    mSjnum = 0;
+                } else {
+                    mSjnum = Integer.parseInt(pass);
+                }
+                tv_sjsum.setText("" + mSjnum);
+                mList.get(position).setSjnum(mSjnum);
+                MyCloseKeyBoardUtil.closeKeyBoard((Activity) mContext,view);
+                dialogHelper.disMiss();
+            }
+        });
     }
 
     private PopupOpenHelper openHelper;
@@ -126,10 +175,14 @@ public class PutProDetailAdapter extends BaseAdapter {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         if (0 == kind) {
                             contview.setText(mStoreList.get(i).getHousename());
-                            //                            mList.get(position).setc
+                            mList.get(position).setSelectStoreID(mStoreList.get(i).getHousecode());
+                            mList.get(position).setSelectStoreName(mStoreList.get(i).getHousename());
                         } else {
                             contview.setText(mPosList.get(i).getFname());
+                            mList.get(position).setSelectPositionID(mPosList.get(i).getFcode());
+                            mList.get(position).setSelectPositionName(mPosList.get(i).getFname());
                         }
+                        openHelper.dismiss();
                     }
                 });
             }

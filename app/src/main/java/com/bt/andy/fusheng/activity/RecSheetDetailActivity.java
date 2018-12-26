@@ -47,7 +47,7 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
     private TextView                                                     tv_date;
     private ListView                                                     lv_sheet_detail;
     private String                                                       orderID;
-    private List<ReceiveDetailInfo.ReceivelistBean.ReceiveentrylistBean> mData;
+    private List<ReceiveDetailInfo.ReceivelistBean.SonghuolistBean> mData;
     private LvRecDetailAdapter                                           detailAdapter;
     private TextView                                                     tv_submit;//提交
 
@@ -79,7 +79,7 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
         tv_submit.setOnClickListener(this);
         orderID = getIntent().getStringExtra("orderID");
         mData = new ArrayList();
-        ReceiveDetailInfo.ReceivelistBean.ReceiveentrylistBean bean = new ReceiveDetailInfo.ReceivelistBean.ReceiveentrylistBean();
+        ReceiveDetailInfo.ReceivelistBean.SonghuolistBean bean = new ReceiveDetailInfo.ReceivelistBean.SonghuolistBean();
         mData.add(bean);
         detailAdapter = new LvRecDetailAdapter(this, mData);
         lv_sheet_detail.setAdapter(detailAdapter);
@@ -101,9 +101,11 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
     }
 
     private void sendRecInfo() {
-        //{"userid":"","id":"","fstatus":"","list":[{"receive_id":"","sjnum":""}]}
+        /*{"fstatus":"1","userid":"40288ace665b7ab501665b7f9da10005","id":"40288a0967defead0167df15eb480001",
+        "list";[{"receive_id":"40288a0967defead0167df15eb480002","sjnum":"1"},
+        {"receive_id":"40288a0967defead0167df15eb490003","sjnum":"1"}]}*/
         JSONArray jsonArray = new JSONArray();
-        for (ReceiveDetailInfo.ReceivelistBean.ReceiveentrylistBean bean : mData) {
+        for (ReceiveDetailInfo.ReceivelistBean.SonghuolistBean bean : mData) {
             if (null != bean.getId()) {
                 JSONObject object = new JSONObject();
                 object.put("receive_id", bean.getId());
@@ -144,8 +146,8 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
 
     private void getRecevieDetailInfo() {
         RequestParamsFM params = new RequestParamsFM();
-        params.put("receiveid", orderID);
-        HttpOkhUtils.getInstance().doGetWithParams(NetConfig.RECEIVEDETAIL, params, new HttpOkhUtils.HttpCallBack() {
+        params.put("songhuoid", orderID);
+        HttpOkhUtils.getInstance().doGetWithParams(NetConfig.RECEIVELISTDE, params, new HttpOkhUtils.HttpCallBack() {
             @Override
             public void onError(Request request, IOException e) {
                 ProgressDialogUtil.hideDialog();
@@ -171,10 +173,10 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
                         tv_tel.setText("");
                         tv_hycompany.setText(receivelist.get(0).getHuoyun());
                         tv_date.setText(receivelist.get(0).getChdate());
-                        for (ReceiveDetailInfo.ReceivelistBean.ReceiveentrylistBean bean : receivelist.get(0).getReceiveentrylist()) {
+                        for (ReceiveDetailInfo.ReceivelistBean.SonghuolistBean bean : receivelist.get(0).getSonghuolist()) {
                             bean.setSjnum(0);
                         }
-                        mData.addAll(receivelist.get(0).getReceiveentrylist());
+                        mData.addAll(receivelist.get(0).getSonghuolist());
                         detailAdapter.notifyDataSetChanged();
                     }
                 }
