@@ -11,18 +11,26 @@ package com.bt.andy.fusheng;
 
 public class NetConfig {
     //服务器总地址
-    public static String ROOT          = "http://192.168.10.137:8081/";
+    public static String ROOT    = "http://192.168.10.137:8081/";
     //测试地址
-    public static String TESTURL       = "http://192.168.10.137:8081/";
+    public static String TESTURL = "http://192.168.10.137:8081/";
     //登录
-    public static String LOGIN         = ROOT + "login";
+    public static String LOGIN   = ROOT + "login";
 
 
     //查找校验单列表
-    public static String RECEIVELIST   = ROOT + "receivelist";
+    public static String SELECTCGORDEROR = ROOT + "selectcgorderor";
     //查找校验单详情
-    public static String RECEIVELISTDE = ROOT + "receivelistde";
+    public static String SELECTCGORDER   = ROOT + "selectcgorder";
     //提交校验单
+    public static String INSERTSONGHUO   = ROOT + "insertsonghuo";
+
+
+    //品质检验列表
+    public static String RECEIVELIST   = ROOT + "receivelist";
+    //品质检验详情
+    public static String RECEIVELISTDE = ROOT + "receivelistde";
+    //提交质检单
     public static String UPDATERECEIVE = ROOT + "updatereceive";
 
 

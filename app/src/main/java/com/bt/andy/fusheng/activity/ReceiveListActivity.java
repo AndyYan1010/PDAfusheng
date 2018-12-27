@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,12 +35,13 @@ import okhttp3.Request;
  */
 
 public class ReceiveListActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView                             img_back;
-    private ImageView                             img_refresh;
-    private TextView                              tv_title;
-    private ListView                              lv_rece_sheet;
-    private List<ReceivelistInfo.ReceivelistBean> mData;
-    private LvRecSheetAdapter                     sheetAdapter;
+    private ImageView                                img_back;
+    private ImageView                                img_refresh;
+    private TextView                                 tv_title;
+    private LinearLayout                             lin_empty;
+    private ListView                                 lv_rece_sheet;
+    private List<ReceivelistInfo.InspectionlistBean> mData;
+    private LvRecSheetAdapter                        sheetAdapter;
     private int REQUEST_REC_DETAIL = 1001;
     private int RESULT_REC_DETAIL  = 10001;
 
@@ -55,13 +57,14 @@ public class ReceiveListActivity extends BaseActivity implements View.OnClickLis
         img_back = (ImageView) findViewById(R.id.img_back);
         img_refresh = (ImageView) findViewById(R.id.img_refresh);
         tv_title = (TextView) findViewById(R.id.tv_title);
+        lin_empty = (LinearLayout) findViewById(R.id.lin_empty);
         lv_rece_sheet = (ListView) findViewById(R.id.lv_rece_sheet);
     }
 
     private void setData() {
         img_back.setVisibility(View.VISIBLE);
         img_refresh.setVisibility(View.VISIBLE);
-        tv_title.setText("待检验的收料单");
+        tv_title.setText("待验收的收料单");
         img_back.setOnClickListener(this);
         img_refresh.setOnClickListener(this);
         mData = new ArrayList();
@@ -72,7 +75,7 @@ public class ReceiveListActivity extends BaseActivity implements View.OnClickLis
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //跳转收料单详情
                 Intent intent = new Intent(ReceiveListActivity.this, RecSheetDetailActivity.class);
-                intent.putExtra("orderID", mData.get(i).getId());
+                intent.putExtra("orderID", mData.get(i).getJlh());
                 startActivityForResult(intent, REQUEST_REC_DETAIL);
             }
         });
@@ -103,7 +106,7 @@ public class ReceiveListActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void getRecevieListInfo() {
-        HttpOkhUtils.getInstance().doGet(NetConfig.RECEIVELIST, new HttpOkhUtils.HttpCallBack() {
+        HttpOkhUtils.getInstance().doGet(NetConfig.SELECTCGORDEROR, new HttpOkhUtils.HttpCallBack() {
             @Override
             public void onError(Request request, IOException e) {
                 ProgressDialogUtil.hideDialog();
@@ -126,7 +129,14 @@ public class ReceiveListActivity extends BaseActivity implements View.OnClickLis
                     } else {
                         mData.clear();
                     }
-                    mData.addAll(receivelistInfo.getReceivelist());
+                    if (null != receivelistInfo.getInspectionlist() && receivelistInfo.getInspectionlist().size() > 0) {
+                        lin_empty.setVisibility(View.GONE);
+                    } else {
+                        lin_empty.setVisibility(View.VISIBLE);
+                    }
+                    if (null != receivelistInfo.getInspectionlist()) {
+                        mData.addAll(receivelistInfo.getInspectionlist());
+                    }
                     sheetAdapter.notifyDataSetChanged();
                 }
             }

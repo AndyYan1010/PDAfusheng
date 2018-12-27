@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.bt.andy.fusheng.R;
-import com.bt.andy.fusheng.messegeInfo.PutListInfo;
+import com.bt.andy.fusheng.utils.CheckListInfo;
 
 import java.util.List;
 
@@ -20,11 +20,11 @@ import java.util.List;
  * @更新描述 ${TODO}
  */
 
-public class LvStoreAdapter extends BaseAdapter {
-    private Context                           mContext;
-    private List<PutListInfo.ReceivelistBean> mList;
+public class LvCheckAdapter extends BaseAdapter {
+    private Context                                mContext;
+    private List<CheckListInfo.InspectionlistBean> mList;
 
-    public LvStoreAdapter(Context context, List<PutListInfo.ReceivelistBean> list) {
+    public LvCheckAdapter(Context context, List<CheckListInfo.InspectionlistBean> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -48,7 +48,7 @@ public class LvStoreAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         MyViewHolder viewHolder;
         if (null == view) {
-            view = View.inflate(mContext, R.layout.lv_store_all_item, null);
+            view = View.inflate(mContext, R.layout.lv_check_all_item, null);
             viewHolder = new MyViewHolder();
             viewHolder.tv_order = view.findViewById(R.id.tv_order);
             viewHolder.tv_comname = view.findViewById(R.id.tv_comname);
@@ -61,18 +61,18 @@ public class LvStoreAdapter extends BaseAdapter {
         } else {
             viewHolder = (MyViewHolder) view.getTag();
         }
-        viewHolder.tv_order.setText(mList.get(i).getSonghuono());
-        viewHolder.tv_comname.setText(mList.get(i).getProviderfullname());
-        viewHolder.tv_address.setText(mList.get(i).getChaddress());
-        viewHolder.tv_transCompany.setText(mList.get(i).getHuoyun());
-        viewHolder.tv_phone.setText(mList.get(i).getHuoyuntel());
-        if (null != mList.get(i).getChdate() && mList.get(i).getChdate().length() > 12) {
-            viewHolder.tv_date.setText(mList.get(i).getChdate().substring(0, 10));
-            viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
-        } else {
-            viewHolder.tv_date.setText(mList.get(i).getChdate());
-            viewHolder.tv_time.setText("");
-        }
+        //        viewHolder.tv_order.setText(mList.get(i).getSonghuono());
+        //        viewHolder.tv_comname.setText(mList.get(i).getProviderfullname());
+        //        viewHolder.tv_address.setText(mList.get(i).getChaddress());
+        //        viewHolder.tv_transCompany.setText(mList.get(i).getHuoyun());
+        //        viewHolder.tv_phone.setText(mList.get(i).getHuoyuntel());
+        //        if (null != mList.get(i).getChdate() && mList.get(i).getChdate().length() > 12) {
+        //            viewHolder.tv_date.setText(mList.get(i).getChdate().substring(0, 10));
+        //            viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
+        //        } else {
+        //            viewHolder.tv_date.setText(mList.get(i).getChdate());
+        //            viewHolder.tv_time.setText("");
+        //        }
         return view;
     }
 

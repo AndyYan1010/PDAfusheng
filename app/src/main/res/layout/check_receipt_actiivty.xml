@@ -6,9 +6,35 @@
 
     <include layout="@layout/title_view"/>
 
-    <ListView
-        android:id="@+id/lv_rece_sheet"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lin_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/msg_empty"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未查询到信息"
+                android:textColor="@color/vm_black_87"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lv_rece_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
+    </RelativeLayout>
 </LinearLayout>

@@ -21,10 +21,10 @@ import java.util.List;
  */
 
 public class LvRecSheetAdapter extends BaseAdapter {
-    private Context                               mContext;
-    private List<ReceivelistInfo.ReceivelistBean> mList;
+    private Context                                  mContext;
+    private List<ReceivelistInfo.InspectionlistBean> mList;
 
-    public LvRecSheetAdapter(Context context, List<ReceivelistInfo.ReceivelistBean> list) {
+    public LvRecSheetAdapter(Context context, List<ReceivelistInfo.InspectionlistBean> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -48,31 +48,27 @@ public class LvRecSheetAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         MyViewHolder viewHolder;
         if (null == view) {
-            view = View.inflate(mContext, R.layout.lv_store_item, null);
+            view = View.inflate(mContext, R.layout.lv_rec_all_item, null);
             viewHolder = new MyViewHolder();
-            viewHolder.tv_shname = view.findViewById(R.id.tv_shname);
-            viewHolder.tv_comname = view.findViewById(R.id.tv_comname);
             viewHolder.tv_order = view.findViewById(R.id.tv_order);
-            viewHolder.tv_date = view.findViewById(R.id.tv_date);
-            viewHolder.tv_time = view.findViewById(R.id.tv_time);
+            viewHolder.tv_comname = view.findViewById(R.id.tv_comname);
+            viewHolder.tv_address = view.findViewById(R.id.tv_address);
+            viewHolder.tv_tel = view.findViewById(R.id.tv_tel);
+            viewHolder.tv_person = view.findViewById(R.id.tv_person);
             view.setTag(viewHolder);
         } else {
             viewHolder = (MyViewHolder) view.getTag();
         }
-        viewHolder.tv_shname.setText(mList.get(i).getHuoyun());
+        viewHolder.tv_order.setText(mList.get(i).getOrderno());
         viewHolder.tv_comname.setText(mList.get(i).getProviderfullname());
-        viewHolder.tv_order.setText(mList.get(i).getSonghuono());
-        if (null != mList.get(i).getChdate() && mList.get(i).getChdate().length() > 12) {
-            viewHolder.tv_date.setText(mList.get(i).getChdate().substring(0, 10));
-            viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
-        } else {
-            viewHolder.tv_date.setText(mList.get(i).getChdate());
-            viewHolder.tv_time.setText("");
-        }
+        viewHolder.tv_address.setText(mList.get(i).getAddress());
+        viewHolder.tv_tel.setText(mList.get(i).getTel());
+        viewHolder.tv_person.setText(mList.get(i).getProviderproxy());
+
         return view;
     }
 
     private class MyViewHolder {
-        TextView tv_comname, tv_order, tv_time, tv_shname, tv_date;
+        TextView tv_order, tv_comname, tv_address, tv_tel, tv_person;
     }
 }

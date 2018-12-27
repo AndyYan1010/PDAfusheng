@@ -15,13 +15,13 @@ public class ReceiveDetailInfo {
 
     /**
      * result : 1
-     * receivelist : [{"shpeo":"","shdanwei":"","huoyuntel":"","huoyunpeo":"","chaddress":"河北省邢台县宋家庄167号","jlh":0,"fpeople":"admin","chdate":"2018-12-24","providerproxy":"张爱社，左利彬","huoyun":"","songhuono":"SH20181224005","shaddress":"","ischeck":"0","providerfullname":"河北兴盛机械有限公司","cgorderno":"PO2018090341","songhuolist":[{"num":1,"sfilename":"MP0612 R2.pdf","fnote":"","sjnum":1,"isstatus":"0","units":" 个","songhuono":"SH20181224005","ischeck":"0","djjlh":"15321806","hxcnum":1,"isrk":"1","providerfullname":"河北兴盛机械有限公司","id":"40288a0967defead0167df15eb490003","rknumber":0,"respectarrivedate":"2018-12-24","automemo":"物管库:2个,进料库:0个,服务库:0个,半成品库:0个,转口贸易库:0个,服务旧品库:0个,旧品处理库:0个,在途:10 个,请购:1个,物料库180天内月均出库数:4.5个。超过90天库存数量:","isbianji":"0","cadlist":"KP1905 R1; KP1920 R5; P40B1 R1;","cadno":"KP1920","songhuoid":"40288a0967defead0167df15eb480001","version":"R5","cnum":0,"songhuonum":1,"cgorderno":"PO2018090341","cadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","goodnum":0}],"id":"40288a0967defead0167df15eb480001"}]
+     * inspectionlist : [{"orderno":"PO2018100008","address":"闵行区莲花南路2129弄118号8座","providerfullname":"星域控制工程(上海)有限公司","inspectionlistentry":[{"snum":1,"num":1,"hxnum":0,"sfilename":"S3113040 R0.pdf","units":" 个","djjlh":"15326355","nrknum":1,"rknum":0,"price":1,"providerfullname":"星域控制工程(上海)有限公司","CadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","sggb":"1","id":"798C7013-03D9-4E72-9E32-F0FF04C76CE7","gb":"1","respectarrivedate":"2019-01-11 14:06:00","bhgnum":0,"automemo":"物管库:3 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:7 个,请购:1 个,物料库180天内月均出库数:1.3 个。超过90天库存数量:","checknum":0,"isbianji":"1","cadlist":"S3113040 R0;","totalprice":0.86,"cadno":"S3113040","jlh":"15326329","version":"R0","issonghuo":"1","fixedbuyprice":0,"cgorderno":"PO2018100008","hegenum":0},{"snum":0,"num":1,"hxnum":1,"sfilename":"S3113040 R0.pdf","units":" 个","djjlh":"15326355","nrknum":0,"rknum":0,"price":1,"providerfullname":"星域控制工程(上海)有限公司","CadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","sggb":"1","id":"86F8A582-8A09-4F32-8E4F-9B572437F28A","gb":"1","respectarrivedate":"2018-12-28 12:43:00","bhgnum":0,"automemo":"物管库:4 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:8 个,请购:1 个,物料库180天内月均出库数:2.0 个。超过90天库存数量:物管库(3),","checknum":0,"isbianji":"0","cadlist":"S3113039 R0;","totalprice":0.86,"cadno":"S3113039","jlh":"15326327","version":"R0","issonghuo":"0","fixedbuyprice":0,"cgorderno":"PO2018100008","hegenum":0}],"jlh":15326355,"cgorderno":"OR18-12-12008","tel":"13764903331，33505868","id":"3200D091-02DB-47F8-A374-E732DF07BBEC","providerproxy":"熊建","fax":"021-33505738","lrsj":1538977995493}]
      * message : 列表查找成功
      */
 
     private int result;
-    private String                message;
-    private List<ReceivelistBean> receivelist;
+    private String                   message;
+    private List<InspectionlistBean> inspectionlist;
 
     public int getResult() {
         return result;
@@ -39,155 +39,55 @@ public class ReceiveDetailInfo {
         this.message = message;
     }
 
-    public List<ReceivelistBean> getReceivelist() {
-        return receivelist;
+    public List<InspectionlistBean> getInspectionlist() {
+        return inspectionlist;
     }
 
-    public void setReceivelist(List<ReceivelistBean> receivelist) {
-        this.receivelist = receivelist;
+    public void setInspectionlist(List<InspectionlistBean> inspectionlist) {
+        this.inspectionlist = inspectionlist;
     }
 
-    public static class ReceivelistBean {
+    public static class InspectionlistBean {
         /**
-         * shpeo :
-         * shdanwei :
-         * huoyuntel :
-         * huoyunpeo :
-         * chaddress : 河北省邢台县宋家庄167号
-         * jlh : 0
-         * fpeople : admin
-         * chdate : 2018-12-24
-         * providerproxy : 张爱社，左利彬
-         * huoyun :
-         * songhuono : SH20181224005
-         * shaddress :
-         * ischeck : 0
-         * providerfullname : 河北兴盛机械有限公司
-         * cgorderno : PO2018090341
-         * songhuolist : [{"num":1,"sfilename":"MP0612 R2.pdf","fnote":"","sjnum":1,"isstatus":"0","units":" 个","songhuono":"SH20181224005","ischeck":"0","djjlh":"15321806","hxcnum":1,"isrk":"1","providerfullname":"河北兴盛机械有限公司","id":"40288a0967defead0167df15eb490003","rknumber":0,"respectarrivedate":"2018-12-24","automemo":"物管库:2个,进料库:0个,服务库:0个,半成品库:0个,转口贸易库:0个,服务旧品库:0个,旧品处理库:0个,在途:10 个,请购:1个,物料库180天内月均出库数:4.5个。超过90天库存数量:","isbianji":"0","cadlist":"KP1905 R1; KP1920 R5; P40B1 R1;","cadno":"KP1920","songhuoid":"40288a0967defead0167df15eb480001","version":"R5","cnum":0,"songhuonum":1,"cgorderno":"PO2018090341","cadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","goodnum":0}]
-         * id : 40288a0967defead0167df15eb480001
+         * orderno : PO2018100008
+         * address : 闵行区莲花南路2129弄118号8座
+         * providerfullname : 星域控制工程(上海)有限公司
+         * inspectionlistentry : [{"snum":1,"num":1,"hxnum":0,"sfilename":"S3113040 R0.pdf","units":" 个","djjlh":"15326355","nrknum":1,"rknum":0,"price":1,"providerfullname":"星域控制工程(上海)有限公司","CadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","sggb":"1","id":"798C7013-03D9-4E72-9E32-F0FF04C76CE7","gb":"1","respectarrivedate":"2019-01-11 14:06:00","bhgnum":0,"automemo":"物管库:3 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:7 个,请购:1 个,物料库180天内月均出库数:1.3 个。超过90天库存数量:","checknum":0,"isbianji":"1","cadlist":"S3113040 R0;","totalprice":0.86,"cadno":"S3113040","jlh":"15326329","version":"R0","issonghuo":"1","fixedbuyprice":0,"cgorderno":"PO2018100008","hegenum":0},{"snum":0,"num":1,"hxnum":1,"sfilename":"S3113040 R0.pdf","units":" 个","djjlh":"15326355","nrknum":0,"rknum":0,"price":1,"providerfullname":"星域控制工程(上海)有限公司","CadLibjlh":"https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf","sggb":"1","id":"86F8A582-8A09-4F32-8E4F-9B572437F28A","gb":"1","respectarrivedate":"2018-12-28 12:43:00","bhgnum":0,"automemo":"物管库:4 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:8 个,请购:1 个,物料库180天内月均出库数:2.0 个。超过90天库存数量:物管库(3),","checknum":0,"isbianji":"0","cadlist":"S3113039 R0;","totalprice":0.86,"cadno":"S3113039","jlh":"15326327","version":"R0","issonghuo":"0","fixedbuyprice":0,"cgorderno":"PO2018100008","hegenum":0}]
+         * jlh : 15326355
+         * cgorderno : OR18-12-12008
+         * tel : 13764903331，33505868
+         * id : 3200D091-02DB-47F8-A374-E732DF07BBEC
+         * providerproxy : 熊建
+         * fax : 021-33505738
+         * lrsj : 1538977995493
          */
 
-        private String shpeo;
-        private String                shdanwei;
-        private String                huoyuntel;
-        private String                huoyunpeo;
-        private String                chaddress;
-        private int                   jlh;
-        private String                fpeople;
-        private String                chdate;
-        private String                providerproxy;
-        private String                huoyun;
-        private String                songhuono;
-        private String                shaddress;
-        private String                ischeck;
-        private String                providerfullname;
-        private String                cgorderno;
-        private String                id;
-        private List<SonghuolistBean> songhuolist;
+        private String orderno;
+        private String                        address;
+        private String                        providerfullname;
+        private int                           jlh;
+        private String                        cgorderno;
+        private String                        tel;
+        private String                        id;
+        private String                        providerproxy;
+        private String                        fax;
+        private long                          lrsj;
+        private List<InspectionlistentryBean> inspectionlistentry;
 
-        public String getShpeo() {
-            return shpeo;
+        public String getOrderno() {
+            return orderno;
         }
 
-        public void setShpeo(String shpeo) {
-            this.shpeo = shpeo;
+        public void setOrderno(String orderno) {
+            this.orderno = orderno;
         }
 
-        public String getShdanwei() {
-            return shdanwei;
+        public String getAddress() {
+            return address;
         }
 
-        public void setShdanwei(String shdanwei) {
-            this.shdanwei = shdanwei;
-        }
-
-        public String getHuoyuntel() {
-            return huoyuntel;
-        }
-
-        public void setHuoyuntel(String huoyuntel) {
-            this.huoyuntel = huoyuntel;
-        }
-
-        public String getHuoyunpeo() {
-            return huoyunpeo;
-        }
-
-        public void setHuoyunpeo(String huoyunpeo) {
-            this.huoyunpeo = huoyunpeo;
-        }
-
-        public String getChaddress() {
-            return chaddress;
-        }
-
-        public void setChaddress(String chaddress) {
-            this.chaddress = chaddress;
-        }
-
-        public int getJlh() {
-            return jlh;
-        }
-
-        public void setJlh(int jlh) {
-            this.jlh = jlh;
-        }
-
-        public String getFpeople() {
-            return fpeople;
-        }
-
-        public void setFpeople(String fpeople) {
-            this.fpeople = fpeople;
-        }
-
-        public String getChdate() {
-            return chdate;
-        }
-
-        public void setChdate(String chdate) {
-            this.chdate = chdate;
-        }
-
-        public String getProviderproxy() {
-            return providerproxy;
-        }
-
-        public void setProviderproxy(String providerproxy) {
-            this.providerproxy = providerproxy;
-        }
-
-        public String getHuoyun() {
-            return huoyun;
-        }
-
-        public void setHuoyun(String huoyun) {
-            this.huoyun = huoyun;
-        }
-
-        public String getSonghuono() {
-            return songhuono;
-        }
-
-        public void setSonghuono(String songhuono) {
-            this.songhuono = songhuono;
-        }
-
-        public String getShaddress() {
-            return shaddress;
-        }
-
-        public void setShaddress(String shaddress) {
-            this.shaddress = shaddress;
-        }
-
-        public String getIscheck() {
-            return ischeck;
-        }
-
-        public void setIscheck(String ischeck) {
-            this.ischeck = ischeck;
+        public void setAddress(String address) {
+            this.address = address;
         }
 
         public String getProviderfullname() {
@@ -198,12 +98,28 @@ public class ReceiveDetailInfo {
             this.providerfullname = providerfullname;
         }
 
+        public int getJlh() {
+            return jlh;
+        }
+
+        public void setJlh(int jlh) {
+            this.jlh = jlh;
+        }
+
         public String getCgorderno() {
             return cgorderno;
         }
 
         public void setCgorderno(String cgorderno) {
             this.cgorderno = cgorderno;
+        }
+
+        public String getTel() {
+            return tel;
+        }
+
+        public void setTel(String tel) {
+            this.tel = tel;
         }
 
         public String getId() {
@@ -214,75 +130,121 @@ public class ReceiveDetailInfo {
             this.id = id;
         }
 
-        public List<SonghuolistBean> getSonghuolist() {
-            return songhuolist;
+        public String getProviderproxy() {
+            return providerproxy;
         }
 
-        public void setSonghuolist(List<SonghuolistBean> songhuolist) {
-            this.songhuolist = songhuolist;
+        public void setProviderproxy(String providerproxy) {
+            this.providerproxy = providerproxy;
         }
 
-        public static class SonghuolistBean {
+        public String getFax() {
+            return fax;
+        }
+
+        public void setFax(String fax) {
+            this.fax = fax;
+        }
+
+        public long getLrsj() {
+            return lrsj;
+        }
+
+        public void setLrsj(long lrsj) {
+            this.lrsj = lrsj;
+        }
+
+        public List<InspectionlistentryBean> getInspectionlistentry() {
+            return inspectionlistentry;
+        }
+
+        public void setInspectionlistentry(List<InspectionlistentryBean> inspectionlistentry) {
+            this.inspectionlistentry = inspectionlistentry;
+        }
+
+        public static class InspectionlistentryBean {
             /**
+             * snum : 1
              * num : 1
-             * sfilename : MP0612 R2.pdf
-             * fnote :
-             * sjnum : 1
-             * isstatus : 0
+             * hxnum : 0
+             * sfilename : S3113040 R0.pdf
              * units :  个
-             * songhuono : SH20181224005
-             * ischeck : 0
-             * djjlh : 15321806
-             * hxcnum : 1
-             * isrk : 1
-             * providerfullname : 河北兴盛机械有限公司
-             * id : 40288a0967defead0167df15eb490003
-             * rknumber : 0
-             * respectarrivedate : 2018-12-24
-             * automemo : 物管库:2个,进料库:0个,服务库:0个,半成品库:0个,转口贸易库:0个,服务旧品库:0个,旧品处理库:0个,在途:10 个,请购:1个,物料库180天内月均出库数:4.5个。超过90天库存数量:
-             * isbianji : 0
-             * cadlist : KP1905 R1; KP1920 R5; P40B1 R1;
-             * cadno : KP1920
-             * songhuoid : 40288a0967defead0167df15eb480001
-             * version : R5
-             * cnum : 0
-             * songhuonum : 1
-             * cgorderno : PO2018090341
-             * cadLibjlh : https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf
-             * goodnum : 0
+             * djjlh : 15326355
+             * nrknum : 1
+             * rknum : 0
+             * price : 1
+             * providerfullname : 星域控制工程(上海)有限公司
+             * CadLibjlh : https://plant.fs-elliott.cn:3394//11732968//MP0612 R2.pdf
+             * sggb : 1
+             * id : 798C7013-03D9-4E72-9E32-F0FF04C76CE7
+             * gb : 1
+             * respectarrivedate : 2019-01-11 14:06:00
+             * bhgnum : 0
+             * automemo : 物管库:3 个,进料库:0 个,服务库:0 个,半成品库:0 个,转口贸易库:0 个,服务旧品库:0 个,旧品处理库:0 个,在途:7 个,请购:1 个,物料库180天内月均出库数:1.3 个。超过90天库存数量:
+             * checknum : 0
+             * isbianji : 1
+             * cadlist : S3113040 R0;
+             * totalprice : 0.86
+             * cadno : S3113040
+             * jlh : 15326329
+             * version : R0
+             * issonghuo : 1
+             * fixedbuyprice : 0
+             * cgorderno : PO2018100008
+             * hegenum : 0
              */
 
-            private int num;
+            private int snum;
+            private int    num;
+            private int    hxnum;
             private String sfilename;
-            private String fnote;
-            private int    sjnum;
-            private String isstatus;
             private String units;
-            private String songhuono;
-            private String ischeck;
             private String djjlh;
-            private int    hxcnum;
-            private String isrk;
+            private int    nrknum;
+            private int    rknum;
+            private int    price;
             private String providerfullname;
+            private String CadLibjlh;
+            private String sggb;
             private String id;
-            private int    rknumber;
+            private String gb;
             private String respectarrivedate;
+            private int    bhgnum;
             private String automemo;
+            private int    checknum;
             private String isbianji;
             private String cadlist;
+            private double totalprice;
             private String cadno;
-            private String songhuoid;
+            private String jlh;
             private String version;
-            private int    cnum;
-            private int    songhuonum;
+            private String issonghuo;
+            private int    fixedbuyprice;
             private String cgorderno;
-            private String cadLibjlh;
-            private int    goodnum;
+            private int    hegenum;
+            /**
+             * sjsum : 0
+             */
+
+            private int    sjsum;
             /**
              * isMSelect : false
              */
 
             private boolean isMSelect;
+            /**
+             * mineMark : 256262
+             */
+
+            private String mineMark;
+
+            public int getSnum() {
+                return snum;
+            }
+
+            public void setSnum(int snum) {
+                this.snum = snum;
+            }
 
             public int getNum() {
                 return num;
@@ -290,6 +252,14 @@ public class ReceiveDetailInfo {
 
             public void setNum(int num) {
                 this.num = num;
+            }
+
+            public int getHxnum() {
+                return hxnum;
+            }
+
+            public void setHxnum(int hxnum) {
+                this.hxnum = hxnum;
             }
 
             public String getSfilename() {
@@ -300,52 +270,12 @@ public class ReceiveDetailInfo {
                 this.sfilename = sfilename;
             }
 
-            public String getFnote() {
-                return fnote;
-            }
-
-            public void setFnote(String fnote) {
-                this.fnote = fnote;
-            }
-
-            public int getSjnum() {
-                return sjnum;
-            }
-
-            public void setSjnum(int sjnum) {
-                this.sjnum = sjnum;
-            }
-
-            public String getIsstatus() {
-                return isstatus;
-            }
-
-            public void setIsstatus(String isstatus) {
-                this.isstatus = isstatus;
-            }
-
             public String getUnits() {
                 return units;
             }
 
             public void setUnits(String units) {
                 this.units = units;
-            }
-
-            public String getSonghuono() {
-                return songhuono;
-            }
-
-            public void setSonghuono(String songhuono) {
-                this.songhuono = songhuono;
-            }
-
-            public String getIscheck() {
-                return ischeck;
-            }
-
-            public void setIscheck(String ischeck) {
-                this.ischeck = ischeck;
             }
 
             public String getDjjlh() {
@@ -356,20 +286,28 @@ public class ReceiveDetailInfo {
                 this.djjlh = djjlh;
             }
 
-            public int getHxcnum() {
-                return hxcnum;
+            public int getNrknum() {
+                return nrknum;
             }
 
-            public void setHxcnum(int hxcnum) {
-                this.hxcnum = hxcnum;
+            public void setNrknum(int nrknum) {
+                this.nrknum = nrknum;
             }
 
-            public String getIsrk() {
-                return isrk;
+            public int getRknum() {
+                return rknum;
             }
 
-            public void setIsrk(String isrk) {
-                this.isrk = isrk;
+            public void setRknum(int rknum) {
+                this.rknum = rknum;
+            }
+
+            public int getPrice() {
+                return price;
+            }
+
+            public void setPrice(int price) {
+                this.price = price;
             }
 
             public String getProviderfullname() {
@@ -380,6 +318,22 @@ public class ReceiveDetailInfo {
                 this.providerfullname = providerfullname;
             }
 
+            public String getCadLibjlh() {
+                return CadLibjlh;
+            }
+
+            public void setCadLibjlh(String CadLibjlh) {
+                this.CadLibjlh = CadLibjlh;
+            }
+
+            public String getSggb() {
+                return sggb;
+            }
+
+            public void setSggb(String sggb) {
+                this.sggb = sggb;
+            }
+
             public String getId() {
                 return id;
             }
@@ -388,12 +342,12 @@ public class ReceiveDetailInfo {
                 this.id = id;
             }
 
-            public int getRknumber() {
-                return rknumber;
+            public String getGb() {
+                return gb;
             }
 
-            public void setRknumber(int rknumber) {
-                this.rknumber = rknumber;
+            public void setGb(String gb) {
+                this.gb = gb;
             }
 
             public String getRespectarrivedate() {
@@ -404,12 +358,28 @@ public class ReceiveDetailInfo {
                 this.respectarrivedate = respectarrivedate;
             }
 
+            public int getBhgnum() {
+                return bhgnum;
+            }
+
+            public void setBhgnum(int bhgnum) {
+                this.bhgnum = bhgnum;
+            }
+
             public String getAutomemo() {
                 return automemo;
             }
 
             public void setAutomemo(String automemo) {
                 this.automemo = automemo;
+            }
+
+            public int getChecknum() {
+                return checknum;
+            }
+
+            public void setChecknum(int checknum) {
+                this.checknum = checknum;
             }
 
             public String getIsbianji() {
@@ -428,6 +398,14 @@ public class ReceiveDetailInfo {
                 this.cadlist = cadlist;
             }
 
+            public double getTotalprice() {
+                return totalprice;
+            }
+
+            public void setTotalprice(double totalprice) {
+                this.totalprice = totalprice;
+            }
+
             public String getCadno() {
                 return cadno;
             }
@@ -436,12 +414,12 @@ public class ReceiveDetailInfo {
                 this.cadno = cadno;
             }
 
-            public String getSonghuoid() {
-                return songhuoid;
+            public String getJlh() {
+                return jlh;
             }
 
-            public void setSonghuoid(String songhuoid) {
-                this.songhuoid = songhuoid;
+            public void setJlh(String jlh) {
+                this.jlh = jlh;
             }
 
             public String getVersion() {
@@ -452,20 +430,20 @@ public class ReceiveDetailInfo {
                 this.version = version;
             }
 
-            public int getCnum() {
-                return cnum;
+            public String getIssonghuo() {
+                return issonghuo;
             }
 
-            public void setCnum(int cnum) {
-                this.cnum = cnum;
+            public void setIssonghuo(String issonghuo) {
+                this.issonghuo = issonghuo;
             }
 
-            public int getSonghuonum() {
-                return songhuonum;
+            public int getFixedbuyprice() {
+                return fixedbuyprice;
             }
 
-            public void setSonghuonum(int songhuonum) {
-                this.songhuonum = songhuonum;
+            public void setFixedbuyprice(int fixedbuyprice) {
+                this.fixedbuyprice = fixedbuyprice;
             }
 
             public String getCgorderno() {
@@ -476,20 +454,20 @@ public class ReceiveDetailInfo {
                 this.cgorderno = cgorderno;
             }
 
-            public String getCadLibjlh() {
-                return cadLibjlh;
+            public int getHegenum() {
+                return hegenum;
             }
 
-            public void setCadLibjlh(String cadLibjlh) {
-                this.cadLibjlh = cadLibjlh;
+            public void setHegenum(int hegenum) {
+                this.hegenum = hegenum;
             }
 
-            public int getGoodnum() {
-                return goodnum;
+            public int getSjsum() {
+                return sjsum;
             }
 
-            public void setGoodnum(int goodnum) {
-                this.goodnum = goodnum;
+            public void setSjsum(int sjsum) {
+                this.sjsum = sjsum;
             }
 
             public boolean isIsMSelect() {
@@ -498,6 +476,14 @@ public class ReceiveDetailInfo {
 
             public void setIsMSelect(boolean isMSelect) {
                 this.isMSelect = isMSelect;
+            }
+
+            public String getMineMark() {
+                return mineMark;
+            }
+
+            public void setMineMark(String mineMark) {
+                this.mineMark = mineMark;
             }
         }
     }

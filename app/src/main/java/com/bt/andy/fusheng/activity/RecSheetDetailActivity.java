@@ -37,19 +37,22 @@ import okhttp3.Request;
  */
 
 public class RecSheetDetailActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView                                                    img_back;
-    private TextView                                                     tv_title;
-    private TextView                                                     tv_order_code;
-    private TextView                                                     tv_company;
-    private TextView                                                     tv_contacter;
-    private TextView                                                     tv_tel;
-    private TextView                                                     tv_hycompany;
-    private TextView                                                     tv_date;
-    private ListView                                                     lv_sheet_detail;
-    private String                                                       orderID;
-    private List<ReceiveDetailInfo.ReceivelistBean.SonghuolistBean> mData;
-    private LvRecDetailAdapter                                           detailAdapter;
-    private TextView                                                     tv_submit;//提交
+    private ImageView                                                          img_back;
+    private TextView                                                           tv_title;
+    private TextView                                                           tv_order_code;
+    private TextView                                                           tv_company;
+    private TextView                                                           tv_contacter;
+    private TextView                                                           tv_tel;
+    private TextView                                                           tv_hycompany;
+    private TextView                                                           tv_date;
+    private ListView                                                           lv_sheet_detail;
+    private String                                                             orderID;
+    private List<ReceiveDetailInfo.InspectionlistBean.InspectionlistentryBean> mData;
+    private LvRecDetailAdapter                                                 detailAdapter;
+    private TextView                                                           tv_submit;//提交
+    private String                                                             shouhuoid;//收货id
+    private String                                                             huoyunid;//货运id
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +82,7 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
         tv_submit.setOnClickListener(this);
         orderID = getIntent().getStringExtra("orderID");
         mData = new ArrayList();
-        ReceiveDetailInfo.ReceivelistBean.SonghuolistBean bean = new ReceiveDetailInfo.ReceivelistBean.SonghuolistBean();
+        ReceiveDetailInfo.InspectionlistBean.InspectionlistentryBean bean = new ReceiveDetailInfo.InspectionlistBean.InspectionlistentryBean();
         mData.add(bean);
         detailAdapter = new LvRecDetailAdapter(this, mData);
         lv_sheet_detail.setAdapter(detailAdapter);
@@ -101,26 +104,31 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
     }
 
     private void sendRecInfo() {
-        /*{"fstatus":"1","userid":"40288ace665b7ab501665b7f9da10005","id":"40288a0967defead0167df15eb480001",
-        "list";[{"receive_id":"40288a0967defead0167df15eb480002","sjnum":"1"},
-        {"receive_id":"40288a0967defead0167df15eb490003","sjnum":"1"}]}*/
+        /*{"fstatus":"1","userid":"40288ace665b7ab501665b7f9da10005","chdate":"",
+        "shouhuoid":"40288a0967defead0167df15eb480001","huoyunid":"","jlh":"",
+        "list":[{"receive_id":"40288a0967defead0167df15eb480002","songhuonum":"1"."fnote":"","respectarrivedate":""}]}*/
         JSONArray jsonArray = new JSONArray();
-        for (ReceiveDetailInfo.ReceivelistBean.SonghuolistBean bean : mData) {
+        for (ReceiveDetailInfo.InspectionlistBean.InspectionlistentryBean bean : mData) {
             if (null != bean.getId()) {
                 JSONObject object = new JSONObject();
                 object.put("receive_id", bean.getId());
-                object.put("sjnum", "" + bean.getSjnum());
+                object.put("songhuonum", "" + bean.getSjsum());
+                object.put("fnote", null == bean.getMineMark() ? "" : bean.getMineMark());
+                object.put("respectarrivedate", bean.getRespectarrivedate());
                 jsonArray.add(object);
             }
         }
-        ProgressDialogUtil.startShow(this,"正在提交...");
+        ProgressDialogUtil.startShow(this, "正在提交...");
         RequestParamsFM params = new RequestParamsFM();
-        params.put("userid", MyApplication.userID);
-        params.put("id", orderID);
         params.put("fstatus", "1");
+        params.put("userid", MyApplication.userID);
+        params.put("chdate", "");
+        params.put("jlh", orderID);
+        params.put("shouhuoid", shouhuoid);
+        params.put("huoyunid", huoyunid);
         params.put("list", jsonArray);
         params.setUseJsonStreamer(true);
-        HttpOkhUtils.getInstance().doPost(NetConfig.UPDATERECEIVE, params, new HttpOkhUtils.HttpCallBack() {
+        HttpOkhUtils.getInstance().doPost(NetConfig.INSERTSONGHUO, params, new HttpOkhUtils.HttpCallBack() {
             @Override
             public void onError(Request request, IOException e) {
                 ProgressDialogUtil.hideDialog();
@@ -146,8 +154,8 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
 
     private void getRecevieDetailInfo() {
         RequestParamsFM params = new RequestParamsFM();
-        params.put("songhuoid", orderID);
-        HttpOkhUtils.getInstance().doGetWithParams(NetConfig.RECEIVELISTDE, params, new HttpOkhUtils.HttpCallBack() {
+        params.put("jlh", orderID);
+        HttpOkhUtils.getInstance().doGetWithParams(NetConfig.SELECTCGORDER, params, new HttpOkhUtils.HttpCallBack() {
             @Override
             public void onError(Request request, IOException e) {
                 ProgressDialogUtil.hideDialog();
@@ -165,18 +173,19 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
                 ReceiveDetailInfo receiveDetailInfo = gson.fromJson(resbody, ReceiveDetailInfo.class);
                 ToastUtils.showToast(RecSheetDetailActivity.this, receiveDetailInfo.getMessage());
                 if (1 == receiveDetailInfo.getResult()) {
-                    List<ReceiveDetailInfo.ReceivelistBean> receivelist = receiveDetailInfo.getReceivelist();
-                    if (receivelist.size()>0){
-                        tv_order_code.setText(receivelist.get(0).getSonghuono());
+                    List<ReceiveDetailInfo.InspectionlistBean> receivelist = receiveDetailInfo.getInspectionlist();
+                    if (receivelist.size() > 0) {
+                        shouhuoid = receivelist.get(0).getId();
+                        huoyunid = receivelist.get(0).getCgorderno();
+                        tv_order_code.setText(receivelist.get(0).getOrderno());
                         tv_company.setText(receivelist.get(0).getProviderfullname());
                         tv_contacter.setText(receivelist.get(0).getProviderproxy());
-                        tv_tel.setText("");
-                        tv_hycompany.setText(receivelist.get(0).getHuoyun());
-                        tv_date.setText(receivelist.get(0).getChdate());
-                        for (ReceiveDetailInfo.ReceivelistBean.SonghuolistBean bean : receivelist.get(0).getSonghuolist()) {
-                            bean.setSjnum(0);
+                        tv_tel.setText(receivelist.get(0).getTel());
+                        tv_hycompany.setText(receivelist.get(0).getProviderfullname());
+                        for (ReceiveDetailInfo.InspectionlistBean.InspectionlistentryBean bean : receivelist.get(0).getInspectionlistentry()) {
+                            bean.setSjsum(0);
                         }
-                        mData.addAll(receivelist.get(0).getSonghuolist());
+                        mData.addAll(receivelist.get(0).getInspectionlistentry());
                         detailAdapter.notifyDataSetChanged();
                     }
                 }
@@ -185,7 +194,6 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
     }
 
     public void upDataListInfo(int i, int num) {
-        System.out.println(num);
-        mData.get(i).setSjnum(num);
+        mData.get(i).setSjsum(num);
     }
 }

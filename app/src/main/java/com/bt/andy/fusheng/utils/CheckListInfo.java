@@ -1,17 +1,17 @@
-package com.bt.andy.fusheng.messegeInfo;
+package com.bt.andy.fusheng.utils;
 
 import java.util.List;
 
 /**
  * @创建者 AndyYan
- * @创建时间 2018/12/3 9:50
+ * @创建时间 2018/12/27 15:37
  * @描述 ${TODO}
  * @更新者 $Author$
  * @更新时间 $Date$
  * @更新描述 ${TODO}
  */
 
-public class ReceivelistInfo {
+public class CheckListInfo {
 
     /**
      * result : 1

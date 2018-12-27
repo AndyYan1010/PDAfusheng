@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ import okhttp3.Request;
 
 public class PutProListActivity extends BaseActivity implements View.OnClickListener {
     private ImageView                         img_back;
-    private ImageView                         img_empty;
+    private LinearLayout                      lin_empty;
     private ImageView                         img_refresh;
     private TextView                          tv_title;
     private ListView                          lv_store;
@@ -56,7 +57,7 @@ public class PutProListActivity extends BaseActivity implements View.OnClickList
         img_back = (ImageView) findViewById(R.id.img_back);
         img_refresh = (ImageView) findViewById(R.id.img_refresh);
         tv_title = (TextView) findViewById(R.id.tv_title);
-        img_empty = (ImageView) findViewById(R.id.img_empty);
+        lin_empty = (LinearLayout) findViewById(R.id.lin_empty);
         lv_store = (ListView) findViewById(R.id.lv_store);
     }
 
@@ -101,7 +102,7 @@ public class PutProListActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (REQUEST_ISREFRESH == requestCode && RESULTCODE_ISREFRESH == resultCode){
+        if (REQUEST_ISREFRESH == requestCode && RESULTCODE_ISREFRESH == resultCode) {
             //获取产品列表
             getProjectListInfo();
         }
@@ -134,9 +135,9 @@ public class PutProListActivity extends BaseActivity implements View.OnClickList
                     }
 
                     if (null != compeleteListInfo.getReceivelist() && compeleteListInfo.getReceivelist().size() > 0) {
-                        img_empty.setVisibility(View.GONE);
+                        lin_empty.setVisibility(View.GONE);
                     } else {
-                        img_empty.setVisibility(View.VISIBLE);
+                        lin_empty.setVisibility(View.VISIBLE);
                     }
                     if (null != compeleteListInfo.getReceivelist())
                         mData.addAll(compeleteListInfo.getReceivelist());

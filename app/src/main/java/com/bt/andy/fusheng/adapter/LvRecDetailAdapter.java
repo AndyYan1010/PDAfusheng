@@ -1,19 +1,18 @@
 package com.bt.andy.fusheng.adapter;
 
+import android.app.Activity;
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bt.andy.fusheng.R;
-import com.bt.andy.fusheng.activity.RecSheetDetailActivity;
 import com.bt.andy.fusheng.messegeInfo.ReceiveDetailInfo;
+import com.bt.andy.fusheng.utils.MyAlertDialogHelper;
+import com.bt.andy.fusheng.utils.MyCloseKeyBoardUtil;
 
 import java.util.List;
 
@@ -27,11 +26,11 @@ import java.util.List;
  */
 
 public class LvRecDetailAdapter extends BaseAdapter {
-    private Context                                                 mContext;
-    private List<ReceiveDetailInfo.ReceivelistBean.SonghuolistBean> mList;
-    private RecSheetDetailActivity                                  mActivity;
+    private Context                                                            mContext;
+    private List<ReceiveDetailInfo.InspectionlistBean.InspectionlistentryBean> mList;
+    private MyAlertDialogHelper                                                dialogHelper;
 
-    public LvRecDetailAdapter(Context context, List<ReceiveDetailInfo.ReceivelistBean.SonghuolistBean> list) {
+    public LvRecDetailAdapter(Context context, List<ReceiveDetailInfo.InspectionlistBean.InspectionlistentryBean> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -55,76 +54,115 @@ public class LvRecDetailAdapter extends BaseAdapter {
     public View getView(final int i, View view, ViewGroup viewGroup) {
         final MyViewHolder viewHolder;
         if (null == view) {
-            view = View.inflate(mContext, R.layout.lv_detail_item, null);
+            view = View.inflate(mContext, R.layout.lv_rec_detail_item, null);
             viewHolder = new MyViewHolder();
             viewHolder.cb_choice = view.findViewById(R.id.cb_choice);
-            viewHolder.tv_dcode = view.findViewById(R.id.tv_dcode);
+            viewHolder.tv_order = view.findViewById(R.id.tv_order);
             viewHolder.tv_unit = view.findViewById(R.id.tv_unit);
-            viewHolder.tv_shrec = view.findViewById(R.id.tv_shrec);
-            viewHolder.et_real = view.findViewById(R.id.et_real);
+            viewHolder.tv_cz = view.findViewById(R.id.tv_cz);
+            viewHolder.tv_guige = view.findViewById(R.id.tv_guige);
+            viewHolder.tv_sum = view.findViewById(R.id.tv_sum);
+            viewHolder.tv_dsnum = view.findViewById(R.id.tv_dsnum);
+            viewHolder.tv_sjnum = view.findViewById(R.id.tv_sjnum);
+            viewHolder.tv_mark = view.findViewById(R.id.tv_mark);
             view.setTag(viewHolder);
         } else {
             viewHolder = (MyViewHolder) view.getTag();
         }
 
-        TextWatcher textWatcher = new TextWatcher() {
+        viewHolder.cb_choice.setVisibility(View.VISIBLE);
+        viewHolder.tv_order.setText(mList.get(i).getCadno());
+        viewHolder.tv_unit.setText(mList.get(i).getUnits());
+        viewHolder.tv_cz.setText(mList.get(i).getUnits());
+        viewHolder.tv_guige.setText(mList.get(i).getUnits());
+        viewHolder.tv_sum.setText(mList.get(i).getUnits());
+        viewHolder.tv_dsnum.setText(mList.get(i).getUnits());
+        viewHolder.tv_sjnum.setText(mList.get(i).getSjsum());
+        viewHolder.tv_sjnum.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (i != 0) {
-                    String text = String.valueOf(viewHolder.et_real.getText()).trim();
-                    if (!"".equals(text) && !"实收数".equals(text)) {
-                        int num;
-                        try {
-                            num = Integer.parseInt(text);
-                        } catch (Exception e) {
-                            num = 0;
-                        }
-                        mList.get(i).setSjnum(num);
-                        ((RecSheetDetailActivity) mContext).upDataListInfo(i, num);
-                    }
-                }
-            }
-        };
-        viewHolder.et_real.removeTextChangedListener(textWatcher);
-        viewHolder.cb_choice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                mList.get(i).setIsMSelect(b);
+            public void onClick(View view) {
+                //填写实际接收数
+                openInputNumDailog(viewHolder.tv_sjnum, i);
             }
         });
-        if (i == 0) {
-            viewHolder.cb_choice.setVisibility(View.INVISIBLE);
-            viewHolder.tv_dcode.setText("物料代码");
-            viewHolder.tv_unit.setText("单位");
-            viewHolder.tv_shrec.setText("应收数");
-            viewHolder.et_real.setText("实收数");
-            viewHolder.et_real.setBackground(null);
-        } else {
-            viewHolder.cb_choice.setVisibility(View.VISIBLE);
-            viewHolder.tv_dcode.setText(mList.get(i).getCadno());
-            viewHolder.tv_unit.setText(mList.get(i).getUnits());
-            viewHolder.tv_shrec.setText("" + mList.get(i).getSonghuonum());
-            viewHolder.et_real.setBackground(mContext.getResources().getDrawable(R.drawable.bg_round_frame_02));
-            viewHolder.et_real.setText("" + mList.get(i).getSjnum());
-            viewHolder.et_real.addTextChangedListener(textWatcher);
-        }
+        viewHolder.tv_mark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //弹出dialog填写备注
+                openInputDailog(viewHolder.tv_mark, i);
+            }
+        });
 
         return view;
     }
 
+
     private class MyViewHolder {
+
         CheckBox cb_choice;
-        TextView tv_dcode, tv_unit, tv_shrec;
-        EditText et_real;
+        TextView tv_order, tv_unit, tv_cz, tv_guige, tv_sum, tv_dsnum, tv_sjnum, tv_mark;
+    }
+
+    private int mSjnum;
+
+    private void openInputNumDailog(final TextView tv_sjnum, final int i) {
+        dialogHelper = new MyAlertDialogHelper();
+        View view = View.inflate(mContext, R.layout.dialog_input_pass, null);
+        dialogHelper.setDIYView(mContext, view);
+        dialogHelper.show();
+        TextView tv_title = view.findViewById(R.id.tv_title);
+        final EditText et_input = view.findViewById(R.id.et_input);
+        TextView tv_cancle = view.findViewById(R.id.tv_cancle);
+        TextView tv_sure = view.findViewById(R.id.tv_sure);
+        tv_title.setText("实际接收数");
+        tv_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogHelper.disMiss();
+            }
+        });
+        tv_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //先比对下账户密码
+                String pass = String.valueOf(et_input.getText()).trim();
+                if ("".equals(pass) || "请输入数值".equals(pass)) {
+                    mSjnum = 0;
+                } else {
+                    mSjnum = Integer.parseInt(pass);
+                }
+                tv_sjnum.setText("" + mSjnum);
+                mList.get(i).setSjsum(mSjnum);
+                MyCloseKeyBoardUtil.closeKeyBoard((Activity) mContext, view);
+                dialogHelper.disMiss();
+            }
+        });
+    }
+
+    private void openInputDailog(final TextView tv_mark, final int i) {
+        dialogHelper = new MyAlertDialogHelper();
+        View view = View.inflate(mContext, R.layout.dialog_input_word, null);
+        dialogHelper.setDIYView(mContext, view);
+        dialogHelper.show();
+        final EditText et_input = view.findViewById(R.id.et_input);
+        TextView tv_cancle = view.findViewById(R.id.tv_cancle);
+        TextView tv_sure = view.findViewById(R.id.tv_sure);
+        tv_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogHelper.disMiss();
+            }
+        });
+        tv_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //先比对下账户密码
+                String word = String.valueOf(et_input.getText()).trim();
+                tv_mark.setText(word);
+                mList.get(i).setMineMark(word);
+                MyCloseKeyBoardUtil.closeKeyBoard((Activity) mContext, view);
+                dialogHelper.disMiss();
+            }
+        });
     }
 }

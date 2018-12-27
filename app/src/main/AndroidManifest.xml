@@ -36,6 +36,7 @@
         <activity android:name="com.bt.andy.fusheng.activity.CheckProListActivity"/>
         <activity android:name="com.bt.andy.fusheng.activity.PutDetailActivity"/>
         <activity android:name="com.bt.andy.fusheng.activity.SaomiaoUIActivity"/>
+        <activity android:name=".activity.CheckProDetailActivity"/>
         <activity android:name=".activity.PutProListActivity"/>
     </application>
 

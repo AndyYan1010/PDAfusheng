@@ -30,7 +30,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="物料编号："
-                android:textColor="@color/vm_black_87"/>
+                android:textColor="@color/vm_black_87"
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/tv_order"
@@ -56,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="单位："
-                android:textColor="@color/vm_black_87"/>
+                android:textColor="@color/vm_black_87"
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/tv_unit"
@@ -79,26 +81,25 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="2"
             android:gravity="center_vertical"
-            android:minHeight="30dp"
+            android:minHeight="25dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="上架仓库："
-                android:textColor="@color/vm_black_87"/>
+                android:text="材质："
+                android:textColor="@color/vm_black_87"
+                android:textSize="14sp"/>
 
             <TextView
-                android:id="@+id/tv_store"
-                android:layout_width="0dp"
+                android:id="@+id/tv_cz"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="请选择仓库"
+                android:text="226262"
                 android:textColor="@color/vm_black_87"
                 android:textSize="14sp"/>
         </LinearLayout>
@@ -107,25 +108,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:gravity="center_vertical"
-            android:minHeight="30dp"
+            android:minHeight="25dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="上架货位："
-                android:textColor="@color/vm_black_87"/>
+                android:text="规格："
+                android:textColor="@color/vm_black_87"
+                android:textSize="14sp"/>
 
             <TextView
-                android:id="@+id/tv_position"
-                android:layout_width="0dp"
+                android:id="@+id/tv_guige"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:hint="请选择货位"
+                android:text="226262"
                 android:textColor="@color/vm_black_87"
                 android:textSize="14sp"/>
         </LinearLayout>
@@ -149,8 +149,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="应入库数："
-                android:textColor="@color/vm_black_87"/>
+                android:text="订单数量："
+                android:textColor="@color/vm_black_87"
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/tv_sum"
@@ -174,18 +175,77 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="实入库数："
-                android:textColor="@color/vm_black_87"/>
+                android:text="待送数量："
+                android:textColor="@color/vm_black_87"
+                android:textSize="14sp"/>
 
             <TextView
-                android:id="@+id/tv_sjsum"
+                android:id="@+id/tv_dsnum"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal|bottom"
-                android:hint="_______"
                 android:textColor="@color/vm_black_87"
                 android:textSize="14sp"/>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="30dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="实收数量："
+            android:textColor="@color/vm_black_87"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_sjnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="2"
+            android:textColor="@color/vm_black_87"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="备注："
+            android:textColor="@color/vm_black_87"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_mark"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:minHeight="35dp"
+            android:text="可点击输入备注信息"
+            android:textColor="@color/vm_black_87"
+            android:textSize="14sp"/>
     </LinearLayout>
 </LinearLayout>
