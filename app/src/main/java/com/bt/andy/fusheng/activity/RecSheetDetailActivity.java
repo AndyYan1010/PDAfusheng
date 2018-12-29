@@ -240,6 +240,7 @@ public class RecSheetDetailActivity extends BaseActivity implements View.OnClick
                     isChoice = true;
                     JSONObject object = new JSONObject();
                     object.put("receive_id", bean.getId());
+                    object.put("djjlh", bean.getDjjlh());
                     object.put("songhuonum", "" + bean.getSjsum());
                     object.put("fnote", null == bean.getMineMark() ? "" : bean.getMineMark());
                     jsonArray.add(object);

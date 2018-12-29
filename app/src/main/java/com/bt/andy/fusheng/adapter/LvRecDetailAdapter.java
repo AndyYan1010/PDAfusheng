@@ -14,6 +14,7 @@ import com.bt.andy.fusheng.R;
 import com.bt.andy.fusheng.messegeInfo.ReceiveDetailInfo;
 import com.bt.andy.fusheng.utils.MyAlertDialogHelper;
 import com.bt.andy.fusheng.utils.MyCloseKeyBoardUtil;
+import com.bt.andy.fusheng.utils.ToastUtils;
 
 import java.util.List;
 
@@ -130,6 +131,10 @@ public class LvRecDetailAdapter extends BaseAdapter {
                     mSjnum = 0;
                 } else {
                     mSjnum = Integer.parseInt(pass);
+                }
+                if (mSjnum>mList.get(i).getNum()){
+                    ToastUtils.showToast(mContext, "配送数不能大于订单数");
+                    return;
                 }
                 tv_sjnum.setText("" + mSjnum);
                 mList.get(i).setSjsum(mSjnum);

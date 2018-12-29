@@ -14,6 +14,7 @@ import com.bt.andy.fusheng.R;
 import com.bt.andy.fusheng.messegeInfo.CheckDetailInfo;
 import com.bt.andy.fusheng.utils.MyAlertDialogHelper;
 import com.bt.andy.fusheng.utils.MyCloseKeyBoardUtil;
+import com.bt.andy.fusheng.utils.ToastUtils;
 
 import java.util.List;
 
@@ -63,6 +64,7 @@ public class LvCheckDetailAdapter extends BaseAdapter {
             viewHolder.tv_cz = view.findViewById(R.id.tv_cz);
             viewHolder.tv_guige = view.findViewById(R.id.tv_guige);
             viewHolder.tv_sum = view.findViewById(R.id.tv_sum);
+            viewHolder.tv_sjnum = view.findViewById(R.id.tv_sjnum);
             viewHolder.tv_hgnum = view.findViewById(R.id.tv_hgnum);
             viewHolder.tv_bhgnum = view.findViewById(R.id.tv_bhgnum);
             viewHolder.tv_mark = view.findViewById(R.id.tv_mark);
@@ -75,20 +77,28 @@ public class LvCheckDetailAdapter extends BaseAdapter {
         viewHolder.tv_cz.setText(mList.get(i).getCadlist());
         viewHolder.tv_guige.setText(mList.get(i).getAutomemo());
         viewHolder.tv_sum.setText("" + mList.get(i).getNum());
+        viewHolder.tv_sjnum.setText("" + mList.get(i).getNum());
         viewHolder.tv_hgnum.setText("" + mList.get(i).getGoodnum());
         viewHolder.tv_bhgnum.setText("" + mList.get(i).getCnum());
+        viewHolder.tv_sjnum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //填写实际检测数
+                openInputNumDailog(viewHolder.tv_sjnum, i, 0);
+            }
+        });
         viewHolder.tv_hgnum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //填写合格数
-                openInputNumDailog(viewHolder.tv_hgnum, i,1);
+                openInputNumDailog(viewHolder.tv_hgnum, i, 1);
             }
         });
         viewHolder.tv_bhgnum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //填写不合格数
-                openInputNumDailog(viewHolder.tv_bhgnum, i,2);
+                openInputNumDailog(viewHolder.tv_bhgnum, i, 2);
             }
         });
         viewHolder.tv_mark.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +119,7 @@ public class LvCheckDetailAdapter extends BaseAdapter {
 
     private class MyViewHolder {
         CheckBox cb_choice;
-        TextView tv_order, tv_unit, tv_cz, tv_guige, tv_sum, tv_hgnum,tv_bhgnum, tv_mark;
+        TextView tv_order, tv_unit, tv_cz, tv_guige, tv_sum, tv_sjnum, tv_hgnum, tv_bhgnum, tv_mark;
     }
 
     private int mSjnum;
@@ -123,7 +133,13 @@ public class LvCheckDetailAdapter extends BaseAdapter {
         final EditText et_input = view.findViewById(R.id.et_input);
         TextView tv_cancle = view.findViewById(R.id.tv_cancle);
         TextView tv_sure = view.findViewById(R.id.tv_sure);
-        tv_title.setText("检测合格数");
+        if (0 == kind) {
+            tv_title.setText("实际检测数");
+        } else if (1 == kind) {
+            tv_title.setText("检测到合格数");
+        } else {
+            tv_title.setText("检测到不合格数");
+        }
         tv_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,12 +156,26 @@ public class LvCheckDetailAdapter extends BaseAdapter {
                 } else {
                     mSjnum = Integer.parseInt(pass);
                 }
-                tv_sjnum.setText("" + mSjnum);
-                if (1==kind){
+                if (0 == kind) {
+                    if (mSjnum > mList.get(i).getNum()) {
+                        ToastUtils.showToast(mContext, "实际检测数不能大于应检测数");
+                        return;
+                    }
+                    mList.get(i).setSjnum(mSjnum);
+                } else if (1 == kind) {
+                    if (mSjnum + mList.get(i).getCnum() != mList.get(i).getSjnum()) {
+                        ToastUtils.showToast(mContext, "合格数+不合格不等于实际检测数");
+                        return;
+                    }
                     mList.get(i).setGoodnum(mSjnum);
-                }else {
+                } else {
+                    if (mSjnum + mList.get(i).getGoodnum() != mList.get(i).getSjnum()) {
+                        ToastUtils.showToast(mContext, "合格数+不合格不等于实际检测数");
+                        return;
+                    }
                     mList.get(i).setCnum(mSjnum);
                 }
+                tv_sjnum.setText("" + mSjnum);
                 MyCloseKeyBoardUtil.closeKeyBoard((Activity) mContext, view);
                 dialogHelper.disMiss();
             }

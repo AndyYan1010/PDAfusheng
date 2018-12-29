@@ -117,9 +117,10 @@ public class CheckProDetailActivity extends BaseActivity implements View.OnClick
                     isChoice = true;
                     JSONObject object = new JSONObject();
                     object.put("receive_id", bean.getId());
+                    object.put("djjlh", bean.getDjjlh());
                     object.put("songhuono", bean.getSonghuono());
                     object.put("cgorderno", mCgorderno);
-                    object.put("checknum", "" + bean.getNum());
+                    object.put("checknum", "" + bean.getSjnum());
                     object.put("goodnum", "" + bean.getGoodnum());
                     object.put("badnum", "" + bean.getCnum());
                     object.put("reason", null == bean.getMineReason() ? "" : bean.getMineReason());
@@ -197,6 +198,7 @@ public class CheckProDetailActivity extends BaseActivity implements View.OnClick
                     for (CheckDetailInfo.ReceivelistBean.SonghuolistBean bean : checkDetailInfo.getReceivelist().get(0).getSonghuolist()) {
                         bean.setGoodnum(0);
                         bean.setCnum(0);
+                        bean.setSjnum(bean.getNum());
                     }
                     if (null != checkDetailInfo.getReceivelist().get(0).getSonghuolist())
                         mData.addAll(checkDetailInfo.getReceivelist().get(0).getSonghuolist());

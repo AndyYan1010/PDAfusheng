@@ -21,6 +21,7 @@ import com.bt.andy.fusheng.messegeInfo.StoreDetailInfo;
 import com.bt.andy.fusheng.utils.MyAlertDialogHelper;
 import com.bt.andy.fusheng.utils.MyCloseKeyBoardUtil;
 import com.bt.andy.fusheng.utils.PopupOpenHelper;
+import com.bt.andy.fusheng.utils.ToastUtils;
 
 import java.util.List;
 
@@ -80,7 +81,7 @@ public class PutProDetailAdapter extends BaseAdapter {
         }
         viewHolder.tv_order.setText(mList.get(i).getCadno());
         viewHolder.tv_unit.setText(mList.get(i).getUnits());
-        viewHolder.tv_sum.setText("" + mList.get(i).getSjnum());
+        viewHolder.tv_sum.setText("" + mList.get(i).getNum());
         viewHolder.tv_store.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,9 +147,13 @@ public class PutProDetailAdapter extends BaseAdapter {
                 } else {
                     mSjnum = Integer.parseInt(pass);
                 }
+                if (mSjnum > mList.get(position).getNum()) {
+                    ToastUtils.showToast(mContext, "实际入库数不能大于应入库数");
+                    return;
+                }
                 tv_sjsum.setText("" + mSjnum);
                 mList.get(position).setSjnum(mSjnum);
-                MyCloseKeyBoardUtil.closeKeyBoard((Activity) mContext,view);
+                MyCloseKeyBoardUtil.closeKeyBoard((Activity) mContext, view);
                 dialogHelper.disMiss();
             }
         });
