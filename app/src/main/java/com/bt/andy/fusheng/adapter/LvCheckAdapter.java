@@ -21,10 +21,10 @@ import java.util.List;
  */
 
 public class LvCheckAdapter extends BaseAdapter {
-    private Context                                mContext;
-    private List<CheckListInfo.InspectionlistBean> mList;
+    private Context                             mContext;
+    private List<CheckListInfo.ReceivelistBean> mList;
 
-    public LvCheckAdapter(Context context, List<CheckListInfo.InspectionlistBean> list) {
+    public LvCheckAdapter(Context context, List<CheckListInfo.ReceivelistBean> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -61,18 +61,18 @@ public class LvCheckAdapter extends BaseAdapter {
         } else {
             viewHolder = (MyViewHolder) view.getTag();
         }
-        //        viewHolder.tv_order.setText(mList.get(i).getSonghuono());
-        //        viewHolder.tv_comname.setText(mList.get(i).getProviderfullname());
-        //        viewHolder.tv_address.setText(mList.get(i).getChaddress());
-        //        viewHolder.tv_transCompany.setText(mList.get(i).getHuoyun());
-        //        viewHolder.tv_phone.setText(mList.get(i).getHuoyuntel());
-        //        if (null != mList.get(i).getChdate() && mList.get(i).getChdate().length() > 12) {
-        //            viewHolder.tv_date.setText(mList.get(i).getChdate().substring(0, 10));
-        //            viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
-        //        } else {
-        //            viewHolder.tv_date.setText(mList.get(i).getChdate());
-        //            viewHolder.tv_time.setText("");
-        //        }
+        viewHolder.tv_order.setText(mList.get(i).getSonghuono());
+        viewHolder.tv_comname.setText(mList.get(i).getProviderfullname());
+        viewHolder.tv_address.setText(mList.get(i).getChaddress());
+        viewHolder.tv_transCompany.setText(mList.get(i).getHuoyun());
+        viewHolder.tv_phone.setText(mList.get(i).getHuoyuntel());
+        if (null != mList.get(i).getChdate() && mList.get(i).getChdate().length() > 12) {
+            viewHolder.tv_date.setText(mList.get(i).getChdate().substring(0, 10));
+            viewHolder.tv_time.setText(mList.get(i).getChdate().substring(11));
+        } else {
+            viewHolder.tv_date.setText(mList.get(i).getChdate());
+            viewHolder.tv_time.setText("");
+        }
         return view;
     }
 

@@ -15,13 +15,13 @@ public class CheckListInfo {
 
     /**
      * result : 1
-     * inspectionlist : [{"orderno":"PO2018100008","address":"闵行区莲花南路2129弄118号8座","providerfullname":"星域控制工程(上海)有限公司","jlh":15326355,"tel":"13764903331，33505868","id":"3200D091-02DB-47F8-A374-E732DF07BBEC","providerproxy":"熊建"},{"orderno":"PO2018090341","address":"河北省邢台县宋家庄167号","providerfullname":"河北兴盛机械有限公司","jlh":15321803,"tel":"0319-2764092，13818978466(SH)","id":"4EAE6A99-EEAC-4454-8546-E4BF73E7E41B","providerproxy":"张爱社，左利彬"},{"orderno":"PO2018080237","address":"湖北省大冶市经济开发区西北工业园","receiver":"李四","providerfullname":"大冶斯瑞尔换热器有限公司","jlh":15186077,"tel":"0714-8755606，13872058412","id":"74551268-B68A-4E21-8D47-E405BA39F2F3","providerproxy":"汪敬华","rtel":"1888888","raddress":"南通1"}]
+     * receivelist : [{"huoyuntel":"","providerfullname":"河北兴盛机械有限公司","chaddress":"河北省邢台县宋家庄167号","id":"40288a4267f3448d0167f3456d970001","chdate":"2018-12-25 00:00:00","providerproxy":"张爱社，左利彬","huoyun":"","songhuono":"SH20181228002"}]
      * message : 列表查找成功
      */
 
     private int result;
-    private String                   message;
-    private List<InspectionlistBean> inspectionlist;
+    private String                message;
+    private List<ReceivelistBean> receivelist;
 
     public int getResult() {
         return result;
@@ -39,53 +39,41 @@ public class CheckListInfo {
         this.message = message;
     }
 
-    public List<InspectionlistBean> getInspectionlist() {
-        return inspectionlist;
+    public List<ReceivelistBean> getReceivelist() {
+        return receivelist;
     }
 
-    public void setInspectionlist(List<InspectionlistBean> inspectionlist) {
-        this.inspectionlist = inspectionlist;
+    public void setReceivelist(List<ReceivelistBean> receivelist) {
+        this.receivelist = receivelist;
     }
 
-    public static class InspectionlistBean {
+    public static class ReceivelistBean {
         /**
-         * orderno : PO2018100008
-         * address : 闵行区莲花南路2129弄118号8座
-         * providerfullname : 星域控制工程(上海)有限公司
-         * jlh : 15326355
-         * tel : 13764903331，33505868
-         * id : 3200D091-02DB-47F8-A374-E732DF07BBEC
-         * providerproxy : 熊建
-         * receiver : 李四
-         * rtel : 1888888
-         * raddress : 南通1
+         * huoyuntel :
+         * providerfullname : 河北兴盛机械有限公司
+         * chaddress : 河北省邢台县宋家庄167号
+         * id : 40288a4267f3448d0167f3456d970001
+         * chdate : 2018-12-25 00:00:00
+         * providerproxy : 张爱社，左利彬
+         * huoyun :
+         * songhuono : SH20181228002
          */
 
-        private String orderno;
-        private String address;
+        private String huoyuntel;
         private String providerfullname;
-        private int    jlh;
-        private String tel;
+        private String chaddress;
         private String id;
+        private String chdate;
         private String providerproxy;
-        private String receiver;
-        private String rtel;
-        private String raddress;
+        private String huoyun;
+        private String songhuono;
 
-        public String getOrderno() {
-            return orderno;
+        public String getHuoyuntel() {
+            return huoyuntel;
         }
 
-        public void setOrderno(String orderno) {
-            this.orderno = orderno;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
+        public void setHuoyuntel(String huoyuntel) {
+            this.huoyuntel = huoyuntel;
         }
 
         public String getProviderfullname() {
@@ -96,20 +84,12 @@ public class CheckListInfo {
             this.providerfullname = providerfullname;
         }
 
-        public int getJlh() {
-            return jlh;
+        public String getChaddress() {
+            return chaddress;
         }
 
-        public void setJlh(int jlh) {
-            this.jlh = jlh;
-        }
-
-        public String getTel() {
-            return tel;
-        }
-
-        public void setTel(String tel) {
-            this.tel = tel;
+        public void setChaddress(String chaddress) {
+            this.chaddress = chaddress;
         }
 
         public String getId() {
@@ -120,6 +100,14 @@ public class CheckListInfo {
             this.id = id;
         }
 
+        public String getChdate() {
+            return chdate;
+        }
+
+        public void setChdate(String chdate) {
+            this.chdate = chdate;
+        }
+
         public String getProviderproxy() {
             return providerproxy;
         }
@@ -128,28 +116,20 @@ public class CheckListInfo {
             this.providerproxy = providerproxy;
         }
 
-        public String getReceiver() {
-            return receiver;
+        public String getHuoyun() {
+            return huoyun;
         }
 
-        public void setReceiver(String receiver) {
-            this.receiver = receiver;
+        public void setHuoyun(String huoyun) {
+            this.huoyun = huoyun;
         }
 
-        public String getRtel() {
-            return rtel;
+        public String getSonghuono() {
+            return songhuono;
         }
 
-        public void setRtel(String rtel) {
-            this.rtel = rtel;
-        }
-
-        public String getRaddress() {
-            return raddress;
-        }
-
-        public void setRaddress(String raddress) {
-            this.raddress = raddress;
+        public void setSonghuono(String songhuono) {
+            this.songhuono = songhuono;
         }
     }
 }

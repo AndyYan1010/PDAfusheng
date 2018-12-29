@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bt.andy.fusheng.R;
-import com.bt.andy.fusheng.messegeInfo.ReceiveDetailInfo;
+import com.bt.andy.fusheng.messegeInfo.CheckDetailInfo;
 import com.bt.andy.fusheng.utils.MyAlertDialogHelper;
 import com.bt.andy.fusheng.utils.MyCloseKeyBoardUtil;
 
@@ -26,12 +26,12 @@ import java.util.List;
  * @更新描述 ${TODO}
  */
 
-public class LvRecDetailAdapter extends BaseAdapter {
-    private Context                                                            mContext;
-    private List<ReceiveDetailInfo.InspectionlistBean.InspectionlistentryBean> mList;
-    private MyAlertDialogHelper                                                dialogHelper;
+public class LvCheckDetailAdapter extends BaseAdapter {
+    private Context                                               mContext;
+    private List<CheckDetailInfo.ReceivelistBean.SonghuolistBean> mList;
+    private MyAlertDialogHelper                                   dialogHelper;
 
-    public LvRecDetailAdapter(Context context, List<ReceiveDetailInfo.InspectionlistBean.InspectionlistentryBean> list) {
+    public LvCheckDetailAdapter(Context context, List<CheckDetailInfo.ReceivelistBean.SonghuolistBean> list) {
         this.mContext = context;
         this.mList = list;
     }
@@ -55,7 +55,7 @@ public class LvRecDetailAdapter extends BaseAdapter {
     public View getView(final int i, View view, ViewGroup viewGroup) {
         final MyViewHolder viewHolder;
         if (null == view) {
-            view = View.inflate(mContext, R.layout.lv_rec_detail_item, null);
+            view = View.inflate(mContext, R.layout.lv_check_detail_item, null);
             viewHolder = new MyViewHolder();
             viewHolder.cb_choice = view.findViewById(R.id.cb_choice);
             viewHolder.tv_order = view.findViewById(R.id.tv_order);
@@ -63,7 +63,8 @@ public class LvRecDetailAdapter extends BaseAdapter {
             viewHolder.tv_cz = view.findViewById(R.id.tv_cz);
             viewHolder.tv_guige = view.findViewById(R.id.tv_guige);
             viewHolder.tv_sum = view.findViewById(R.id.tv_sum);
-            viewHolder.tv_sjnum = view.findViewById(R.id.tv_sjnum);
+            viewHolder.tv_hgnum = view.findViewById(R.id.tv_hgnum);
+            viewHolder.tv_bhgnum = view.findViewById(R.id.tv_bhgnum);
             viewHolder.tv_mark = view.findViewById(R.id.tv_mark);
             view.setTag(viewHolder);
         } else {
@@ -74,12 +75,20 @@ public class LvRecDetailAdapter extends BaseAdapter {
         viewHolder.tv_cz.setText(mList.get(i).getCadlist());
         viewHolder.tv_guige.setText(mList.get(i).getAutomemo());
         viewHolder.tv_sum.setText("" + mList.get(i).getNum());
-        viewHolder.tv_sjnum.setText("" + mList.get(i).getSjsum());
-        viewHolder.tv_sjnum.setOnClickListener(new View.OnClickListener() {
+        viewHolder.tv_hgnum.setText("" + mList.get(i).getGoodnum());
+        viewHolder.tv_bhgnum.setText("" + mList.get(i).getCnum());
+        viewHolder.tv_hgnum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //填写实际接收数
-                openInputNumDailog(viewHolder.tv_sjnum, i);
+                //填写合格数
+                openInputNumDailog(viewHolder.tv_hgnum, i,1);
+            }
+        });
+        viewHolder.tv_bhgnum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //填写不合格数
+                openInputNumDailog(viewHolder.tv_bhgnum, i,2);
             }
         });
         viewHolder.tv_mark.setOnClickListener(new View.OnClickListener() {
@@ -100,12 +109,12 @@ public class LvRecDetailAdapter extends BaseAdapter {
 
     private class MyViewHolder {
         CheckBox cb_choice;
-        TextView tv_order, tv_unit, tv_cz, tv_guige, tv_sum, tv_sjnum, tv_mark;
+        TextView tv_order, tv_unit, tv_cz, tv_guige, tv_sum, tv_hgnum,tv_bhgnum, tv_mark;
     }
 
     private int mSjnum;
 
-    private void openInputNumDailog(final TextView tv_sjnum, final int i) {
+    private void openInputNumDailog(final TextView tv_sjnum, final int i, final int kind) {
         dialogHelper = new MyAlertDialogHelper();
         View view = View.inflate(mContext, R.layout.dialog_input_pass, null);
         dialogHelper.setDIYView(mContext, view);
@@ -114,7 +123,7 @@ public class LvRecDetailAdapter extends BaseAdapter {
         final EditText et_input = view.findViewById(R.id.et_input);
         TextView tv_cancle = view.findViewById(R.id.tv_cancle);
         TextView tv_sure = view.findViewById(R.id.tv_sure);
-        tv_title.setText("实际配送数");
+        tv_title.setText("检测合格数");
         tv_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,7 +141,11 @@ public class LvRecDetailAdapter extends BaseAdapter {
                     mSjnum = Integer.parseInt(pass);
                 }
                 tv_sjnum.setText("" + mSjnum);
-                mList.get(i).setSjsum(mSjnum);
+                if (1==kind){
+                    mList.get(i).setGoodnum(mSjnum);
+                }else {
+                    mList.get(i).setCnum(mSjnum);
+                }
                 MyCloseKeyBoardUtil.closeKeyBoard((Activity) mContext, view);
                 dialogHelper.disMiss();
             }
@@ -156,10 +169,9 @@ public class LvRecDetailAdapter extends BaseAdapter {
         tv_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //先比对下账户密码
                 String word = String.valueOf(et_input.getText()).trim();
                 tv_mark.setText(word);
-                mList.get(i).setMineMark(word);
+                mList.get(i).setMineReason(word);
                 MyCloseKeyBoardUtil.closeKeyBoard((Activity) mContext, view);
                 dialogHelper.disMiss();
             }

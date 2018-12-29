@@ -64,7 +64,7 @@ public class ReceiveListActivity extends BaseActivity implements View.OnClickLis
     private void setData() {
         img_back.setVisibility(View.VISIBLE);
         img_refresh.setVisibility(View.VISIBLE);
-        tv_title.setText("待验收的收料单");
+        tv_title.setText("原料配送单列表");
         img_back.setOnClickListener(this);
         img_refresh.setOnClickListener(this);
         mData = new ArrayList();
@@ -75,7 +75,7 @@ public class ReceiveListActivity extends BaseActivity implements View.OnClickLis
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //跳转收料单详情
                 Intent intent = new Intent(ReceiveListActivity.this, RecSheetDetailActivity.class);
-                intent.putExtra("orderID", mData.get(i).getJlh());
+                intent.putExtra("orderID", ""+mData.get(i).getJlh());
                 startActivityForResult(intent, REQUEST_REC_DETAIL);
             }
         });

@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity {
     private MenuGridviewApater menuAdapter;
     private int[]    resArr  = new int[]{R.drawable.shouliao, R.drawable.pinzhijianyan, R.drawable.shangjia, R.drawable.zhijian, R.drawable.chaipi, R.drawable.kucun, R.drawable.pandian
             , R.drawable.baozhuang, R.drawable.fahuo, R.drawable.kusun, 0, 0};
-    private String[] textArr = new String[]{"来料签收",  "品质检验", "上架入库","物料质检", "截料拆批", "库存查询", "盘点", "包装追溯", "成品发货", "库损处理", "", ""};
+    private String[] textArr = new String[]{"原料配送",  "品质检验", "上架入库","物料质检", "截料拆批", "库存查询", "盘点", "包装追溯", "成品发货", "库损处理", "", ""};
     private List<MainMenuEntity> dadaList;
 
     @Override

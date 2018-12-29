@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="出货单位："
+                    android:text="供货单位："
                     android:textColor="@color/vm_black_87"/>
 
                 <TextView
@@ -69,11 +69,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="出货地址："
+                    android:text="供货地址："
                     android:textColor="@color/vm_black_87"/>
 
                 <TextView
-                    android:id="@+id/tv_chaddress"
+                    android:id="@+id/tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="闵行区莲花路"
@@ -81,29 +81,29 @@
                     android:textSize="14sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="收货单位："
-                    android:textColor="@color/vm_black_87"
-                    android:textSize="14sp"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:text="收货单位："-->
+                    <!--android:textColor="@color/vm_black_87"-->
+                    <!--android:textSize="14sp"/>-->
 
-                <TextView
-                    android:id="@+id/tv_recunit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="精卫填海股份公司"
-                    android:textColor="@color/vm_black_87"
-                    android:textSize="14sp"/>
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_recunit"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginRight="5dp"-->
+                    <!--android:text="精卫填海股份公司"-->
+                    <!--android:textColor="@color/vm_black_87"-->
+                    <!--android:textSize="14sp"/>-->
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                     android:textSize="14sp"/>
 
                 <TextView
-                    android:id="@+id/tv_address"
+                    android:id="@+id/tv_shdate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
@@ -139,7 +139,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="3dp"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 

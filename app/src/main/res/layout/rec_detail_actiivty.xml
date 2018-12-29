@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="平方米"
+                    android:text="佐罗"
                     android:textColor="@color/vm_black_87"/>
             </LinearLayout>
 
@@ -111,24 +111,62 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="3dp"
+                android:gravity="center_vertical"
+                android:minHeight="30dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:text="货运公司："
-                    android:textColor="@color/vm_black_87"/>
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_hycompany"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="送货公司："
+                        android:textColor="@color/vm_black_87"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_shcompany"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="点击选择公司"
+                        android:textColor="@color/vm_black_87"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="测试"
-                    android:textColor="@color/vm_black_87"/>
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="货运公司："
+                        android:textColor="@color/vm_black_87"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_hycompany"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|bottom"
+                        android:hint="点击选择公司"
+                        android:textColor="@color/vm_black_87"
+                        android:textSize="14sp"/>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -160,7 +198,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/gray_10"
                 android:minHeight="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -207,7 +246,8 @@
             <com.bt.andy.fusheng.viewmodle.MyListView
                 android:id="@+id/lv_sheet_detail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:divider="@null">
             </com.bt.andy.fusheng.viewmodle.MyListView>
 
             <RelativeLayout

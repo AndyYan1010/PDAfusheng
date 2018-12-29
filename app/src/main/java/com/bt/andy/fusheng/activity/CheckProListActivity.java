@@ -35,14 +35,15 @@ import okhttp3.Request;
  */
 
 public class CheckProListActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView                              img_back;
-    private ImageView                              img_refresh;
-    private TextView                               tv_title;
-    private LinearLayout                           lin_empty;
-    private ListView                               lv_store;
-    private List<CheckListInfo.InspectionlistBean> mData;
-    private LvCheckAdapter                         sheetAdapter;
+    private ImageView                           img_back;
+    private ImageView                           img_refresh;
+    private TextView                            tv_title;
+    private LinearLayout                        lin_empty;
+    private ListView                            lv_store;
+    private List<CheckListInfo.ReceivelistBean> mData;
+    private LvCheckAdapter                      sheetAdapter;
     private int REQUEST_CHECK_DETAIL = 1007;
+    private int RESULT_CHECK_DETAIL  = 10007;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,6 @@ public class CheckProListActivity extends BaseActivity implements View.OnClickLi
         tv_title.setText("检测列表");
         img_back.setOnClickListener(this);
         img_refresh.setOnClickListener(this);
-
-
         mData = new ArrayList();
         sheetAdapter = new LvCheckAdapter(this, mData);
         lv_store.setAdapter(sheetAdapter);
@@ -97,6 +96,15 @@ public class CheckProListActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_CHECK_DETAIL == requestCode && RESULT_CHECK_DETAIL == resultCode) {
+            //获取检验列表
+            getCheckListInfo();
+        }
+    }
+
     private void getCheckListInfo() {
         ProgressDialogUtil.startShow(this, "正在查询...");
         HttpOkhUtils.getInstance().doGet(NetConfig.RECEIVELIST, new HttpOkhUtils.HttpCallBack() {
@@ -122,13 +130,13 @@ public class CheckProListActivity extends BaseActivity implements View.OnClickLi
                     } else {
                         mData.clear();
                     }
-                    if (null != checkListInfo.getInspectionlist() && checkListInfo.getInspectionlist().size() > 0) {
+                    if (null != checkListInfo.getReceivelist() && checkListInfo.getReceivelist().size() > 0) {
                         lin_empty.setVisibility(View.GONE);
                     } else {
                         lin_empty.setVisibility(View.VISIBLE);
                     }
-                    if (null != checkListInfo.getInspectionlist())
-                        mData.addAll(checkListInfo.getInspectionlist());
+                    if (null != checkListInfo.getReceivelist())
+                        mData.addAll(checkListInfo.getReceivelist());
                     sheetAdapter.notifyDataSetChanged();
                 }
             }
